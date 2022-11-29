@@ -2,6 +2,10 @@
 buildscript {
     ext {
         nav_version = "2.5.3"
+        hilt_version = "2.44.2"
+        retrofit_version = '2.9.0'
+        moshi_version = '1.14.0'
+
         core_ktx = "androidx.core:core-ktx:1.9.0"
         appcompat = "androidx.appcompat:appcompat:1.5.1"
         material = "com.google.android.material:material:1.7.0"
@@ -9,6 +13,26 @@ buildscript {
         constraint = "androidx.constraintlayout:constraintlayout:2.1.4"
         navigationFragment = "androidx.navigation:navigation-fragment-ktx:$nav_version"
         navigationUi =  "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+        timber_logging = "com.jakewharton.timber:timber:5.0.1"
+
+        hilt_android =  "com.google.dagger:hilt-android:$hilt_version"
+        hilt_android_kapt = "com.google.dagger:hilt-android-compiler:$hilt_version"
+        hilt_compiler_kapt = 'androidx.hilt:hilt-compiler:1.0.0'
+
+        retrofit = "com.squareup.retrofit2:retrofit:$retrofit_version"
+        okhttp = "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.7"
+
+        moshi =  "com.squareup.moshi:moshi-kotlin:$moshi_version"
+        moshi_kapt = "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+        moshi_converter = "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+        moshi_adapters = "com.squareup.moshi:moshi-adapters:$moshi_version"
+    }
+
+    dependencies {
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
     }
 }
 
