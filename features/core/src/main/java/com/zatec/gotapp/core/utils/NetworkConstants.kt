@@ -15,27 +15,36 @@ object NetworkConstants {
 }
 
 fun <T> flowError(throwable: Throwable) = flow<UiResult<T>> {
-    emit(UiResult.error(message = throwable.message))
+    emit(UiResult.error(errorMessage = throwable.message))
 }
 
 fun <T> flowResult(coroutine: suspend () -> ApiResponse<T>) = flow {
+
     emit(UiResult.loading())
     try {
         //Invoke api call
-        when(val apiResponse =  coroutine.invoke()){
-            is ApiResponse.Success -> emit(UiResult.success(data = (apiResponse.data)))
-            is ApiResponse.Error -> emit(UiResult.error(errorCode = apiResponse.code, message = apiResponse.message))
+        val apiResponse =  coroutine.invoke()
+        Timber.d(apiResponse.toString())
+        when(apiResponse){
+            is ApiResponse.Success -> {
+                Timber.d(apiResponse.data.toString())
+                emit(UiResult.success(data = apiResponse.data))
+            }
+            is ApiResponse.Error -> {
+                Timber.e(apiResponse.message)
+                emit(UiResult.error(errorCode = apiResponse.code, errorMessage = apiResponse.message))
+            }
             //else -> emit(UiResult.error(message = "Something went wrong"))
         }
 
     }catch (exception: Exception){
-        Timber.d(exception)
+        Timber.e(exception)
         when(exception){
             is UnknownHostException -> emit(UiResult.error(errorCode = R.string.network_error))
             is SocketTimeoutException -> emit(UiResult.error(errorCode = R.string.socket_error))
             is IOException -> emit(UiResult.error(errorCode = R.string.io_error))
 
-            else -> emit(UiResult.error(message = exception.message))
+            else -> emit(UiResult.error(errorMessage = exception.message))
         }
     }
 }

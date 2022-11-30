@@ -50,6 +50,7 @@ sealed class ApiResponse<T> {
                 } else {
                     msg
                 }
+                Timber.e(errorMsg)
                 Error(message = errorMsg ?: "unknown message")
             }
         }

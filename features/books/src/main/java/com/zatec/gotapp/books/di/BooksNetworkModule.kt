@@ -1,6 +1,8 @@
 package com.zatec.gotapp.books.di
 
 import com.zatec.gotapp.books.api.BooksApi
+import com.zatec.gotapp.books.repos.BooksRepo
+import com.zatec.gotapp.books.repos.BooksRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,5 +18,11 @@ class BooksNetworkModule {
     @Provides
     fun providesBooksApiService(retrofit: Retrofit): BooksApi {
         return retrofit.create(BooksApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun providesBooksRepo(booksApi: BooksApi): BooksRepo {
+        return BooksRepository(booksApi)
     }
 }

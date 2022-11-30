@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 apply from: "$rootDir/build-android.gradle"
@@ -14,10 +16,18 @@ android {
 
 dependencies {
     implementation project(path: ':features:core')
+    implementation project(path: ':features:books')
 
     implementation "$splashscreen"
     implementation "$constraint"
-    implementation project(path: ':features:books')
+
+    implementation "$navigationFragment"
+    implementation "$navigationUi"
+
+    implementation "$hilt_android"
+    kapt "$hilt_android_kapt"
+    kapt "$hilt_compiler_kapt"
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'

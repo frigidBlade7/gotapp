@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 apply from: "$rootDir/build-android.gradle"
@@ -9,6 +11,14 @@ android {
 }
 dependencies {
     implementation project(path: ':features:core')
+
+    implementation "$hilt_android"
+    kapt "$hilt_android_kapt"
+    kapt "$hilt_compiler_kapt"
+
+    api "$moshi"
+    kapt "$moshi_kapt"
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'

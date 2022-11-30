@@ -3,13 +3,10 @@ package com.zatec.gotapp.books.repos
 import com.zatec.gotapp.books.api.BooksApi
 import com.zatec.gotapp.books.data.BookResponse
 import com.zatec.gotapp.core.api.ApiResponse
-import com.zatec.gotapp.core.utils.IOContext
-import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
 class BooksRepository @Inject constructor(
-    private val booksApi: BooksApi,
-    @IOContext private val ioDispatcher: CoroutineDispatcher
+    private val booksApi: BooksApi
 ): BooksRepo{
     override suspend fun queryBooks(page: Int?, size: Int): ApiResponse<List<BookResponse>> =
         booksApi.queryBooks(page = page, pageSize = size)

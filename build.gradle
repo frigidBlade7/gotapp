@@ -6,6 +6,7 @@ buildscript {
         retrofit_version = '2.9.0'
         moshi_version = '1.14.0'
 
+        fragment_ktx = "androidx.fragment:fragment-ktx:1.5.4"
         core_ktx = "androidx.core:core-ktx:1.9.0"
         appcompat = "androidx.appcompat:appcompat:1.5.1"
         material = "com.google.android.material:material:1.7.0"
@@ -28,6 +29,7 @@ buildscript {
 
         moshi_converter = "com.squareup.retrofit2:converter-moshi:$retrofit_version"
         moshi_adapters = "com.squareup.moshi:moshi-adapters:$moshi_version"
+        lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
     }
 
     dependencies {
