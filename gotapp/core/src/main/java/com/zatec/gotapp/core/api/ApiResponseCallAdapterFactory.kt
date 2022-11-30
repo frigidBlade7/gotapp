@@ -1,13 +1,12 @@
 package com.zatec.gotapp.core.api
 
-import com.zatec.gotapp.core.ui.UiResult
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 
-class ApiFlowCallAdapterFactory : CallAdapter.Factory(){
+class ApiResponseCallAdapterFactory : CallAdapter.Factory(){
     override fun get(
         returnType: Type,
         annotations: Array<out Annotation>,
@@ -18,19 +17,19 @@ class ApiFlowCallAdapterFactory : CallAdapter.Factory(){
 
         // check first that the return type is `ParameterizedType`
         check(returnType is ParameterizedType) {
-            "return type must be parameterized as Call<UiResult<Foo>> or Call<UiResult<out Foo>>"
+            "return type must be parameterized as Call<ApiResponse<Foo>> or Call<ApiResponse<out Foo>>"
         }
 
         // get the response type inside the `Call` type
         val responseType = getParameterUpperBound(0, returnType)
         // if the response type is not ApiResponse then we can't handle this type, so we return null
-        if (getRawType(responseType) != UiResult::class.java) {
+        if (getRawType(responseType) != ApiResponse::class.java) {
             return null
         }
 
         // the response type is ApiResponse and should be parameterized
         check(responseType is ParameterizedType) { "Response must be parameterized as ApiResponse<Foo> or ApiResponse<out Foo>" }
         val successBodyType = getParameterUpperBound(0, responseType)
-        return ApiFlowCallAdapter(successBodyType)
+        return ApiResponseCallAdapter(successBodyType)
     }
 }

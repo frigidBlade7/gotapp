@@ -1,7 +1,8 @@
 package com.zatec.gotapp.core.di
 
 import com.squareup.moshi.Moshi
-import com.zatec.gotapp.core.api.ApiFlowCallAdapterFactory
+import com.zatec.gotapp.core.api.ApiResponseCallAdapterFactory
+import com.zatec.gotapp.core.api.TestCall
 import com.zatec.gotapp.core.utils.NetworkConstants
 import dagger.Module
 import dagger.Provides
@@ -46,13 +47,19 @@ class CoreNetworkModule {
 
     @Provides
     @Singleton
-    fun providesRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit{
+    fun providesRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
         val retrofitBuilder: Retrofit.Builder = Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl("https://anapioficeandfire.com")
             .addConverterFactory(MoshiConverterFactory.create(moshi).asLenient())
-            .addCallAdapterFactory(ApiFlowCallAdapterFactory())
+            .addCallAdapterFactory(ApiResponseCallAdapterFactory())
 
         return retrofitBuilder.build()
+    }
+
+    @Singleton
+    @Provides
+    fun providesGotApiService(retrofit: Retrofit): TestCall{
+        return retrofit.create(TestCall::class.java)
     }
 }

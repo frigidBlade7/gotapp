@@ -1,9 +1,5 @@
 package com.zatec.gotapp.core.api
 
-import com.zatec.gotapp.core.ui.UiResult
-import com.zatec.gotapp.core.utils.flowError
-import com.zatec.gotapp.core.utils.flowResult
-import kotlinx.coroutines.flow.Flow
 import okhttp3.Request
 import okio.Timeout
 import retrofit2.Call
@@ -11,28 +7,27 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class ApiFlowCall<T>(private val call: Call<T>): Call<Flow<UiResult<T>>> {
+class ApiResponseCall<T>(private val call: Call<T>): Call<ApiResponse<T>> {
 
-    //wrap in ApiFlowCall
-    override fun clone(): Call<Flow<UiResult<T>>> = ApiFlowCall(call.clone())
+    //wrap in ApiResponseCall
+    override fun clone(): Call<ApiResponse<T>> = ApiResponseCall(call.clone())
 
     //dont use execute directly
 
-    override fun execute(): Response<Flow<UiResult<T>>> =
+    override fun execute(): Response<ApiResponse<T>> =
         throw UnsupportedOperationException("Requests should not be async")
 
     //handle success and failure
-    override fun enqueue(callback: Callback<Flow<UiResult<T>>>) {
+    override fun enqueue(callback: Callback<ApiResponse<T>>) {
         call.enqueue(object : Callback<T> {
             override fun onResponse(call: Call<T>, response: Response<T>) {
-                val result = flowResult { response }
-                callback.onResponse(this@ApiFlowCall, Response.success(result))
+                val result = ApiResponse.create(response)
+                callback.onResponse(this@ApiResponseCall, Response.success(result))
             }
 
             override fun onFailure(call: Call<T>, t: Throwable) {
-                val result = flowError<T>(t)
-                callback.onResponse(this@ApiFlowCall, Response.success(result))
-
+                val result = ApiResponse.create<T>(t)
+                callback.onResponse(this@ApiResponseCall, Response.success(result))
             }
 
         })
