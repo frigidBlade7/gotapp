@@ -11,6 +11,7 @@ android {
 }
 dependencies {
 
+    api "$paging"
     api "$core_ktx"
     api "$appcompat"
     api "$material"

@@ -5,7 +5,7 @@ data class UiResult<T>(
     val errorCode: Int? = null,
     val errorMessage: String? = null,
     val message: String? = null,
-    val hasMore: Boolean = false,
+    val hasMore: Boolean = true,
     val data: T? = null
 ){
     companion object {

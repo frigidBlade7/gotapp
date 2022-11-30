@@ -6,6 +6,8 @@ buildscript {
         retrofit_version = '2.9.0'
         moshi_version = '1.14.0'
 
+        paging = "androidx.paging:paging-runtime-ktx:3.1.1"
+        swipe_refresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
         fragment_ktx = "androidx.fragment:fragment-ktx:1.5.4"
         core_ktx = "androidx.core:core-ktx:1.9.0"
         appcompat = "androidx.appcompat:appcompat:1.5.1"

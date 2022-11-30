@@ -6,6 +6,7 @@
         android:icon="@drawable/houses"/>
 
     <item android:title="@string/books"
+        android:id="@+id/booksListFragment"
         android:icon="@drawable/books"/>
 
     <item android:title="@string/characters"

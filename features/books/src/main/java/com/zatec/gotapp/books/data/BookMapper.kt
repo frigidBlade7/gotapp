@@ -6,11 +6,11 @@ import com.zatec.gotapp.core.data.DataMapper
 
 class BookMapper: DataMapper<BookResponse, BookData, BookUi> {
 
-    override fun <BookData> toData(): BookData {
+    override fun toData(): BookData {
         TODO("Not yet implemented")
     }
 
-    override fun <D> toUi(): BookUi {
+    override fun toUi(): BookUi {
         TODO("Not yet implemented")
     }
 }
