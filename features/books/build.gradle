@@ -1,23 +1,14 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
 
 apply from: "$rootDir/build-android.gradle"
-
 android {
-    defaultConfig {
-        applicationId "com.zatec.gotapp"
-    }
-    namespace 'com.zatec.gotapp'
+    namespace 'com.zatec.features.books'
 }
-
 dependencies {
     implementation project(path: ':features:core')
-
-    implementation "$splashscreen"
-    implementation "$constraint"
-    implementation project(path: ':features:books')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'

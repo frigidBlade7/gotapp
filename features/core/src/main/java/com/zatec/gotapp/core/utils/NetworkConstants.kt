@@ -1,6 +1,7 @@
 package com.zatec.gotapp.core.utils
 
-import com.zatec.gotapp.R
+
+import com.zatec.features.core.R
 import com.zatec.gotapp.core.api.ApiResponse
 import com.zatec.gotapp.core.ui.UiResult
 import kotlinx.coroutines.flow.flow
@@ -24,7 +25,7 @@ fun <T> flowResult(coroutine: suspend () -> ApiResponse<T>) = flow {
         when(val apiResponse =  coroutine.invoke()){
             is ApiResponse.Success -> emit(UiResult.success(data = (apiResponse.data)))
             is ApiResponse.Error -> emit(UiResult.error(errorCode = apiResponse.code, message = apiResponse.message))
-            else -> emit(UiResult.error(message = "Something went wrong"))
+            //else -> emit(UiResult.error(message = "Something went wrong"))
         }
 
     }catch (exception: Exception){

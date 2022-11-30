@@ -2,18 +2,20 @@ package com.zatec.gotapp.core.di
 
 import com.squareup.moshi.Moshi
 import com.zatec.gotapp.core.api.ApiResponseCallAdapterFactory
-import com.zatec.gotapp.core.api.TestCall
+import com.zatec.gotapp.core.utils.IOContext
 import com.zatec.gotapp.core.utils.NetworkConstants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+import kotlin.coroutines.CoroutineContext
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -57,9 +59,11 @@ class CoreNetworkModule {
         return retrofitBuilder.build()
     }
 
-    @Singleton
     @Provides
-    fun providesGotApiService(retrofit: Retrofit): TestCall{
-        return retrofit.create(TestCall::class.java)
+    @Singleton
+    @IOContext
+    fun providesCoroutineContext(): CoroutineContext{
+        return Dispatchers.IO
     }
+
 }

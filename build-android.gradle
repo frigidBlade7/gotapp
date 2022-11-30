@@ -1,6 +1,5 @@
 // shared build script to prevent repetitions when building out modules
 android {
-    namespace 'com.zatec.gotapp'
     compileSdk 33
 
     defaultConfig {

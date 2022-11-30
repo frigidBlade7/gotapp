@@ -6,7 +6,9 @@ plugins {
 }
 
 apply from: "$rootDir/build-android.gradle"
-
+android {
+    namespace 'com.zatec.features.core'
+}
 dependencies {
 
     implementation "$navigationFragment"
