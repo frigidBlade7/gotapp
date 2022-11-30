@@ -9,9 +9,6 @@
             type="com.zatec.gotapp.books.ui.BookUi" />
 
         <import type="com.zatec.gotapp.books.ui.BookUiKt"/>
-<!--
-        <import type="com.creion.sharedcomponent.attendee.data.converters.AttendeeConvertersKt"/>
--->
         <import type="android.view.View"/>
     </data>
 
@@ -72,7 +69,7 @@
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{item.released}"
+            android:text="@{BookUiKt.formatDate(item)}"
             android:textSize="11sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/authors"
@@ -87,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="@{item.numberOfPages}"
+            android:text="@{@string/pages_count(item.numberOfPages)}"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintBaseline_toBaselineOf="@+id/date"

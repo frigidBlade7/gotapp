@@ -14,10 +14,6 @@ object NetworkConstants {
     const val API_TIMEOUT = 60L
 }
 
-fun <T> flowError(throwable: Throwable) = flow<UiResult<T>> {
-    emit(UiResult.error(errorMessage = throwable.message))
-}
-
 fun <T> flowResult(coroutine: suspend () -> ApiResponse<T>) = flow {
 
     emit(UiResult.loading())
@@ -28,7 +24,7 @@ fun <T> flowResult(coroutine: suspend () -> ApiResponse<T>) = flow {
         when(apiResponse){
             is ApiResponse.Success -> {
                 Timber.d(apiResponse.data.toString())
-                emit(UiResult.success(data = apiResponse.data))
+                emit(UiResult.success(data = apiResponse.data, lastPage = apiResponse.lastPage))
             }
             is ApiResponse.Error -> {
                 Timber.e(apiResponse.message)

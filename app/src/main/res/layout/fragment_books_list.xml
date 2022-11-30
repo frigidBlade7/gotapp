@@ -65,12 +65,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/notifs_rv"
+                android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
                 android:nestedScrollingEnabled="false"
-                android:paddingHorizontal="@dimen/default_margin"
                 android:paddingBottom="@dimen/default_margin"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/book_item" />

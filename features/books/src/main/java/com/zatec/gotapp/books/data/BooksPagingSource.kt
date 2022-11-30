@@ -27,11 +27,11 @@ class BooksPagingSource (
         return try {
             var pagedData: List<BookResponse>
             var nextKey: Int?
-            val notificationResponse =  queryBooksUseCase.invoke(size= size, page= page)
+            val response =  queryBooksUseCase.invoke(size= size, page= page)
 
             lateinit var result: LoadResult<Int,BookUi>
 
-            notificationResponse.collectLatest {
+            response.collectLatest {
 
                 it.errorMessage?.apply {
                     result = LoadResult.Error(Exception(it.message))
@@ -43,13 +43,12 @@ class BooksPagingSource (
 
                 it.data?.apply {
                     pagedData = this
-                    nextKey = if(!it.hasMore) null
+                    nextKey = if(it.lastPage == null || (it.lastPage ?: 0) >= currentPage) null
                     else currentPage + 1
 
                     result = LoadResult.Page(
-                        pagedData.map { response ->
-                            response.toUi() },
-                        if (currentPage==0) null else currentPage -1,
+                        pagedData.map { response -> response.toUi() },
+                        if (currentPage==1) null else currentPage -1,
                         nextKey)
                 }
             }

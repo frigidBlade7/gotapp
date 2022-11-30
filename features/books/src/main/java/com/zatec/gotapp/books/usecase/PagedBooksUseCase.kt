@@ -14,7 +14,7 @@ class PagedBooksUseCase @Inject constructor(
     fun invoke(size: Int, page: Int): Flow<PagingData<BookUi>> {
         val config = PagingConfig(
             pageSize = size,
-            prefetchDistance = 2,
+            prefetchDistance = 1,
             enablePlaceholders = true
         )
         return Pager(config) {

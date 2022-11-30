@@ -2,6 +2,7 @@ package com.zatec.gotapp.core.di
 
 import com.squareup.moshi.Moshi
 import com.zatec.gotapp.core.api.ApiResponseCallAdapterFactory
+import com.zatec.gotapp.core.api.HeaderInterceptor
 import com.zatec.gotapp.core.utils.IOContext
 import com.zatec.gotapp.core.utils.NetworkConstants
 import dagger.Module
@@ -35,6 +36,7 @@ class CoreNetworkModule {
     fun providesHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         val client = OkHttpClient.Builder().apply {
             callTimeout(NetworkConstants.API_TIMEOUT, TimeUnit.SECONDS)
+            addInterceptor(HeaderInterceptor())
             addInterceptor(httpLoggingInterceptor)
         }.build()
 

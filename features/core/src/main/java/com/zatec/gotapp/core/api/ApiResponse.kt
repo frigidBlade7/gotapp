@@ -1,6 +1,7 @@
 package com.zatec.gotapp.core.api
 
 
+import android.net.Uri
 import com.zatec.features.core.R
 import retrofit2.Response
 import timber.log.Timber
@@ -9,7 +10,7 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
 sealed class ApiResponse<T> {
-    data class Success<T>(val data: T? = null): ApiResponse<T>()
+    data class Success<T>(val data: T? = null, val lastPage: Int? = null): ApiResponse<T>()
     data class Error<T>(val code: Int? = null, val message: String? = null): ApiResponse<T>()
 
     companion object {
@@ -38,8 +39,15 @@ sealed class ApiResponse<T> {
                     Error(message = "empty body")
                 }
                 else {
-                    //if none of these conditions stop us, lets return a ApiResponse.Success
-                    Success(body)
+                    var lastPage: Int? = null
+                    val linkData = response.headers().find { it.first == "link" }?.second
+                    linkData?.let {
+                        val link = it.split(",").find { it.contains("rel=\"last\"") }?.split(";")?.first()?.replace(
+                        ">","")?.replace("<","")
+                        lastPage = Uri.parse(link).getQueryParameter("page")?.toInt()?:0
+                    }
+
+                    Success(body, lastPage)
                 }
             }
             else {
