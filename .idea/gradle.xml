@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/books" />
             <option value="$PROJECT_DIR$/features/core" />
+            <option value="$PROJECT_DIR$/features/houses" />
           </set>
         </option>
       </GradleProjectSettings>
