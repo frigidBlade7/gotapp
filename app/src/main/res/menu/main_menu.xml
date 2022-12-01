@@ -3,6 +3,7 @@
 
     <item
         android:title="@string/houses"
+        android:id="@+id/housesListFragment"
         android:icon="@drawable/houses"/>
 
     <item android:title="@string/books"
@@ -11,6 +12,4 @@
 
     <item android:title="@string/characters"
         android:icon="@drawable/characters"/>
-    <item android:title="@string/profile"
-        android:icon="@drawable/profile"/>
 </menu>

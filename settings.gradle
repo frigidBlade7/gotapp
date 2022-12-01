@@ -16,3 +16,4 @@ rootProject.name = "gotapp"
 include ':app'
 include ':features:core'
 include ':features:books'
+include ':features:houses'
