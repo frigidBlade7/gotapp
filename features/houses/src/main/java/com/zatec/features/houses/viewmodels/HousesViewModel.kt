@@ -1,4 +1,4 @@
-package com.zatec.features.houses
+package com.zatec.features.houses.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

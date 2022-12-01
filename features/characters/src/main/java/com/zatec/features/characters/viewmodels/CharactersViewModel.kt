@@ -1,11 +1,11 @@
-package com.zatec.gotapp.books
+package com.zatec.features.characters.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.zatec.gotapp.books.ui.BookUi
-import com.zatec.gotapp.books.usecase.PagedBooksUseCase
+import com.zatec.features.characters.ui.CharacterUi
+import com.zatec.features.characters.usecase.PagedCharactersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -16,24 +16,24 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class BooksViewModel @Inject constructor(
-    private val booksUseCase: PagedBooksUseCase
+class CharactersViewModel @Inject constructor(
+    private val pagedCharactersUseCase: PagedCharactersUseCase
 ): ViewModel() {
 
     init {
-        getBooks()
+        getCharacters()
     }
 
-    private val _pagedBooks = MutableSharedFlow<PagingData<BookUi>>()
-    val pagedBooks: Flow<PagingData<BookUi>>
-        get() = _pagedBooks.asSharedFlow()
+    private val _pagedCharacters = MutableSharedFlow<PagingData<CharacterUi>>()
+    val pagedCharacters: Flow<PagingData<CharacterUi>>
+        get() = _pagedCharacters.asSharedFlow()
 
-    private fun getBooks(page: Int = 1, size: Int = 10){
+    private fun getCharacters(page: Int = 1, size: Int = 25){
         viewModelScope.launch {
-            booksUseCase.invoke(page= page, size = size)
+            pagedCharactersUseCase.invoke(page= page, size = size)
                 .cachedIn(viewModelScope).collectLatest {
                     Timber.d(it.toString())
-                    _pagedBooks.emit(it)
+                    _pagedCharacters.emit(it)
                 }
         }
     }
