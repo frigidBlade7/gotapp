@@ -7,6 +7,7 @@
         <variable
             name="item"
             type="com.zatec.features.houses.ui.HouseUi" />
+        <import type="android.view.View"/>
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -25,6 +26,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
+            android:paddingBottom="16dp"
             android:focusable="true">
 
             <TextView
@@ -35,6 +37,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="@dimen/default_margin"
                 android:ellipsize="marquee"
+                android:textStyle="bold"
                 android:text="@{item.name}"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/coatOfArms"
@@ -50,7 +53,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:text="@{item.coatOfArms}"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/words"
                 app:layout_constraintEnd_toStartOf="@+id/region"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -63,8 +65,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
-                android:text="@{item.words}"
+                android:text="@{@string/quotes(item.words)}"
+                android:visibility="@{item.words.empty?View.GONE: View.VISIBLE}"
                 android:textSize="12sp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -89,10 +91,9 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginStart="@dimen/default_margin"
-                app:layout_constraintBottom_toBottomOf="@+id/coatOfArms"
                 app:layout_constraintEnd_toStartOf="@+id/house_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/house_name"
