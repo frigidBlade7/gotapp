@@ -14,6 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import com.zatec.gotapp.books.BooksViewModel
 import com.zatec.gotapp.books.ui.BooksListAdapter
+import com.zatec.gotapp.core.ui.BaseLoadStateAdapter
 import com.zatec.gotapp.databinding.FragmentBooksListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -38,7 +39,7 @@ class BooksListFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentBooksListBinding.inflate(inflater)
 
-        binding.recyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter.withLoadStateFooter(BaseLoadStateAdapter())
 
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -55,7 +56,6 @@ class BooksListFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             adapter.loadStateFlow.collectLatest {
                 Timber.d(it.toString())
-                //todo use it.refresh is LoadState.Error to handle errors
 
                 when (it.source.refresh) {
                     is LoadState.Error -> {
@@ -67,9 +67,7 @@ class BooksListFragment : Fragment() {
                         //binding.shimmer.isVisible = true
                     }
 
-
                     is LoadState.NotLoading -> {
-
                         //binding.shimmer.isVisible = false
                         binding.swipeRefreshLayout.isRefreshing = false
 
@@ -79,11 +77,8 @@ class BooksListFragment : Fragment() {
 
                     }
                 }
-
             }
         }
-
-
         return binding.root
     }
 }

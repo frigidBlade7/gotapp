@@ -28,7 +28,7 @@ class BooksViewModel @Inject constructor(
     val pagedBooks: Flow<PagingData<BookUi>>
         get() = _pagedBooks.asSharedFlow()
 
-    private fun getBooks(page: Int = 1, size: Int = 50){
+    private fun getBooks(page: Int = 1, size: Int = 10){
         viewModelScope.launch {
             booksUseCase.invoke(page= page, size = size)
                 .cachedIn(viewModelScope).collectLatest {

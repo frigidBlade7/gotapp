@@ -27,7 +27,7 @@ class BooksPagingSource (
         return try {
             var pagedData: List<BookResponse>
             var nextKey: Int?
-            val response =  queryBooksUseCase.invoke(size= size, page= page)
+            val response =  queryBooksUseCase.invoke(size= size, page= currentPage)
 
             lateinit var result: LoadResult<Int,BookUi>
 
@@ -43,18 +43,19 @@ class BooksPagingSource (
 
                 it.data?.apply {
                     pagedData = this
-                    nextKey = if(it.lastPage == null || (it.lastPage ?: 0) >= currentPage) null
+                    nextKey = if(it.lastPage == null || currentPage >= it.lastPage!!) null
                     else currentPage + 1
 
                     result = LoadResult.Page(
-                        pagedData.map { response -> response.toUi() },
-                        if (currentPage==1) null else currentPage -1,
-                        nextKey)
+                        data = pagedData.map { response -> response.toUi() },
+                        prevKey = if (currentPage==1) null else currentPage -1,
+                        nextKey= nextKey)
                 }
             }
 
             result
         }
+
         catch (exception: IOException){
             Timber.e(exception)
             return LoadResult.Error(exception)
@@ -63,7 +64,6 @@ class BooksPagingSource (
             Timber.e(exception)
             return LoadResult.Error(exception)
         }
-
     }
 
 }
