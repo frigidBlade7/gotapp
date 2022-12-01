@@ -19,6 +19,10 @@ dependencies {
     api "$lifecycle"
     api "$fragment_ktx"
 
+    kapt "$room_runtime"
+    api "$room_ktx"
+    api "$room_paging"
+
     implementation "$hilt_android"
     kapt "$hilt_android_kapt"
     kapt "$hilt_compiler_kapt"
