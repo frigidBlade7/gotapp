@@ -14,4 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "gotapp"
 include ':app'
-include ':gotapp:core'
+include ':features:core'
+include ':features:books'

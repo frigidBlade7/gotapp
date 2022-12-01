@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="com.zatec.gotapp.books.ui.BookUi" />
+
+        <import type="com.zatec.gotapp.books.ui.BookUiKt"/>
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/display_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ellipsize="marquee"
+            android:text="@{item.name}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/authors"
+            app:layout_constraintEnd_toStartOf="@+id/isbn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Mr Nathany Natornam Attipoe" />
+
+        <TextView
+            android:id="@+id/isbn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{item.isbn}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/display_name"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="ISBN: 12345" />
+
+        <TextView
+            android:id="@+id/authors"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="@{BookUiKt.displayAuthors(item)}"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/pages"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/display_name"
+            app:layout_constraintTop_toBottomOf="@+id/display_name"
+            tools:text="Georgie Porgie" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{BookUiKt.formatDate(item)}"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/authors"
+            app:layout_constraintEnd_toEndOf="@+id/isbn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/pages"
+            app:layout_constraintTop_toTopOf="@+id/authors"
+            tools:text="24/08/1995" />
+
+        <TextView
+            android:id="@+id/pages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@{@string/pages_count(item.numberOfPages)}"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/date"
+            app:layout_constraintEnd_toStartOf="@+id/date"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/authors"
+            tools:text="600 pages" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

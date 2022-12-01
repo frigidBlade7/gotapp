@@ -1,6 +1,5 @@
 // shared build script to prevent repetitions when building out modules
 android {
-    namespace 'com.zatec.gotapp'
     compileSdk 33
 
     defaultConfig {
@@ -10,6 +9,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        dataBinding true
+        viewBinding true
     }
 
     buildTypes {

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="io_error">io error</string>
-    <string name="network_error">network error</string>
-    <string name="socket_error">socket error</string>
-</resources>
