@@ -26,6 +26,7 @@ dependencies {
 
     implementation "$hilt_android"
     implementation "$swipe_refresh"
+    implementation project(path: ':features:houses')
     kapt "$hilt_android_kapt"
     kapt "$hilt_compiler_kapt"
 

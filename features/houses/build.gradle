@@ -7,7 +7,7 @@ plugins {
 
 apply from: "$rootDir/build-android.gradle"
 android {
-    namespace 'com.zatec.features.books'
+    namespace 'com.zatec.features.houses'
 }
 dependencies {
     implementation project(path: ':features:core')

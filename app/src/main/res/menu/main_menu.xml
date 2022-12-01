@@ -3,6 +3,7 @@
 
     <item
         android:title="@string/houses"
+        android:id="@+id/housesListFragment"
         android:icon="@drawable/houses"/>
 
     <item android:title="@string/books"

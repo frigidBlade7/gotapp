@@ -10,4 +10,10 @@
         tools:layout="@layout/fragment_books_list"
         android:name="com.zatec.gotapp.BooksListFragment"
         android:label="BooksListFragment" />
+
+    <fragment
+        android:id="@+id/housesListFragment"
+        tools:layout="@layout/fragment_houses_list"
+        android:name="com.zatec.gotapp.HousesListFragment"
+        android:label="HousesListFragment" />
 </navigation>

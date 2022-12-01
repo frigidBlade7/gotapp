@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="com.zatec.features.houses.ui.HouseUi" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/material_dynamic_neutral80"
+        style="@style/Widget.Material3.CardView.Outlined">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/house_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:ellipsize="marquee"
+                android:text="@{item.name}"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/coatOfArms"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Mr Nathany Natornam Attipoe" />
+
+            <TextView
+                android:id="@+id/coatOfArms"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@{item.coatOfArms}"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/words"
+                app:layout_constraintEnd_toStartOf="@+id/region"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/house_name"
+                app:layout_constraintTop_toBottomOf="@+id/house_name"
+                tools:text="Georgie Porgie" />
+
+            <TextView
+                android:id="@+id/words"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="@{item.words}"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/region"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/house_name"
+                app:layout_constraintTop_toBottomOf="@+id/coatOfArms"
+                tools:text="Georgie Porgie" />
+
+            <TextView
+                android:id="@+id/region"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.region}"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/house_name"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/coatOfArms"
+                app:layout_constraintTop_toBottomOf="@+id/house_name"
+                tools:text="600 region" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="@dimen/default_margin"
+                app:layout_constraintBottom_toBottomOf="@+id/coatOfArms"
+                app:layout_constraintEnd_toStartOf="@+id/house_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/house_name"
+                app:srcCompat="@drawable/houses" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
