@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.navGraphViewModels
 import androidx.paging.LoadState
-import com.zatec.features.houses.HousesViewModel
+import com.zatec.features.characters.ui.CharactersListAdapter
 import com.zatec.features.houses.ui.HousesListAdapter
+import com.zatec.features.houses.viewmodels.HousesViewModel
 import com.zatec.gotapp.core.ui.BaseLoadStateAdapter
 import com.zatec.gotapp.databinding.FragmentHousesListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +27,9 @@ class HousesListFragment : Fragment() {
 
     lateinit var binding: FragmentHousesListBinding
 
-    private val viewmodel: HousesViewModel by viewModels()
+    private val viewmodel: HousesViewModel by navGraphViewModels(R.id.dashboard_nav){
+        defaultViewModelProviderFactory
+    }
 
     private val adapter = HousesListAdapter {
         Toast.makeText(context, it.name, Toast.LENGTH_SHORT).show()
