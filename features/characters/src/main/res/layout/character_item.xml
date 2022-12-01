@@ -79,7 +79,7 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginStart="@dimen/default_margin"
-                app:layout_constraintBottom_toBottomOf="@+id/titles"
+                app:layout_constraintBottom_toBottomOf="@+id/character_name"
                 app:layout_constraintEnd_toStartOf="@+id/character_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/character_name"

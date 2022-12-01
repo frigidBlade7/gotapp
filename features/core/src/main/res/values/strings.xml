@@ -4,5 +4,6 @@
     <string name="network_error">network error</string>
     <string name="socket_error">socket error</string>
     <string name="pages_count">%1$d pages</string>
+    <string name="quotes">\"%1$s\"</string>
 
 </resources>

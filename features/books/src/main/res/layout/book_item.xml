@@ -27,6 +27,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:ellipsize="marquee"
+            android:fontFamily="More Fonts..."
             android:text="@{item.name}"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/authors"
