@@ -12,6 +12,4 @@
 
     <item android:title="@string/characters"
         android:icon="@drawable/characters"/>
-    <item android:title="@string/profile"
-        android:icon="@drawable/profile"/>
 </menu>
