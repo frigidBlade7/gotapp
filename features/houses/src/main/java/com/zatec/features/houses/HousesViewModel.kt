@@ -28,7 +28,7 @@ class HousesViewModel @Inject constructor(
     val pagedHouses: Flow<PagingData<HouseUi>>
         get() = _pagedHouses.asSharedFlow()
 
-    private fun getHouses(page: Int = 1, size: Int = 25){
+    fun getHouses(page: Int = 1, size: Int = 25){
         viewModelScope.launch {
             housesUseCase.invoke(page= page, size = size)
                 .cachedIn(viewModelScope).collectLatest {

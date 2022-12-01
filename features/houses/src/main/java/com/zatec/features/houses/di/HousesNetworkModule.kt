@@ -16,13 +16,13 @@ class HousesNetworkModule {
 
     @Singleton
     @Provides
-    fun providesBooksApiService(retrofit: Retrofit): HousesApi {
+    fun providesHousesApiService(retrofit: Retrofit): HousesApi {
         return retrofit.create(HousesApi::class.java)
     }
 
     @Singleton
     @Provides
-    fun providesBooksRepo(booksApi: HousesApi): HousesRepo {
+    fun providesHousesRepo(booksApi: HousesApi): HousesRepo {
         return HousesRepository(booksApi)
     }
 }

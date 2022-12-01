@@ -43,7 +43,7 @@ class HousesListFragment : Fragment() {
 
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewmodel.pagedHouses.collectLatest {
+                viewmodel.pagedHouses.collect {
                     adapter.submitData(it)
                 }
             }
