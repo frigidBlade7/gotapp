@@ -11,5 +11,6 @@
         android:icon="@drawable/books"/>
 
     <item android:title="@string/characters"
+        android:id="@+id/charactersListFragment"
         android:icon="@drawable/characters"/>
 </menu>

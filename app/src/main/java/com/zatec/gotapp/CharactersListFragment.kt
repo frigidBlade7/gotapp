@@ -12,25 +12,25 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.navGraphViewModels
 import androidx.paging.LoadState
-import com.zatec.gotapp.books.viewmodels.BooksViewModel
-import com.zatec.gotapp.books.ui.BooksListAdapter
+import com.zatec.features.characters.ui.CharactersListAdapter
+import com.zatec.features.characters.viewmodels.CharactersViewModel
 import com.zatec.gotapp.core.ui.BaseLoadStateAdapter
-import com.zatec.gotapp.databinding.FragmentBooksListBinding
+import com.zatec.gotapp.databinding.FragmentCharactersListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @AndroidEntryPoint
-class BooksListFragment : Fragment() {
+class CharactersListFragment : Fragment() {
 
-    lateinit var binding: FragmentBooksListBinding
+    lateinit var binding: FragmentCharactersListBinding
 
-    private val viewmodel: BooksViewModel by navGraphViewModels(R.id.dashboard_nav){
+    private val viewmodel: CharactersViewModel by navGraphViewModels(R.id.dashboard_nav){
         defaultViewModelProviderFactory
     }
 
-    private val adapter = BooksListAdapter {
+    private val adapter = CharactersListAdapter {
         Toast.makeText(context, it.name, Toast.LENGTH_SHORT).show()
     }
 
@@ -39,13 +39,13 @@ class BooksListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentBooksListBinding.inflate(inflater)
+        binding = FragmentCharactersListBinding.inflate(inflater)
 
         binding.recyclerView.adapter = adapter.withLoadStateFooter(BaseLoadStateAdapter())
 
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewmodel.pagedBooks.collectLatest {
+                viewmodel.pagedCharacters.collectLatest {
                     adapter.submitData(it)
                 }
             }

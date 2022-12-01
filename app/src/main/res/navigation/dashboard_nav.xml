@@ -16,4 +16,9 @@
         tools:layout="@layout/fragment_houses_list"
         android:name="com.zatec.gotapp.HousesListFragment"
         android:label="HousesListFragment" />
+    <fragment
+        android:id="@+id/charactersListFragment"
+        tools:layout="@layout/fragment_characters_list"
+        android:name="com.zatec.gotapp.CharactersListFragment"
+        android:label="CharactersListFragment" />
 </navigation>
