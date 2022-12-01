@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.navGraphViewModels
 import androidx.paging.LoadState
 import com.zatec.features.characters.ui.CharactersListAdapter
@@ -43,11 +41,9 @@ class CharactersListFragment : Fragment() {
 
         binding.recyclerView.adapter = adapter.withLoadStateFooter(BaseLoadStateAdapter())
 
-        lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewmodel.pagedCharacters.collectLatest {
-                    adapter.submitData(it)
-                }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewmodel.pagedCharacters.collectLatest {
+                adapter.submitData(viewLifecycleOwner.lifecycle, it)
             }
         }
 
@@ -81,6 +77,8 @@ class CharactersListFragment : Fragment() {
                 }
             }
         }
+        viewmodel.getCharacters()
+
         return binding.root
     }
 }

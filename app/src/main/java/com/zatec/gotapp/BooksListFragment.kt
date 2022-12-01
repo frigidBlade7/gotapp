@@ -7,13 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.navGraphViewModels
 import androidx.paging.LoadState
-import com.zatec.gotapp.books.viewmodels.BooksViewModel
 import com.zatec.gotapp.books.ui.BooksListAdapter
+import com.zatec.gotapp.books.viewmodels.BooksViewModel
 import com.zatec.gotapp.core.ui.BaseLoadStateAdapter
 import com.zatec.gotapp.databinding.FragmentBooksListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,11 +41,9 @@ class BooksListFragment : Fragment() {
 
         binding.recyclerView.adapter = adapter.withLoadStateFooter(BaseLoadStateAdapter())
 
-        lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewmodel.pagedBooks.collectLatest {
-                    adapter.submitData(it)
-                }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewmodel.pagedBooks.collectLatest {
+                adapter.submitData(viewLifecycleOwner.lifecycle, it)
             }
         }
 
@@ -55,6 +51,7 @@ class BooksListFragment : Fragment() {
             adapter.refresh()
             binding.swipeRefreshLayout.isRefreshing = false
         }
+
         viewLifecycleOwner.lifecycleScope.launch {
             adapter.loadStateFlow.collectLatest {
                 Timber.d(it.toString())
@@ -81,6 +78,8 @@ class BooksListFragment : Fragment() {
                 }
             }
         }
+
+        viewmodel.getBooks()
         return binding.root
     }
 }

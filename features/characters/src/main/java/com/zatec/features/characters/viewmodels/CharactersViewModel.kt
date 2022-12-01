@@ -20,15 +20,11 @@ class CharactersViewModel @Inject constructor(
     private val pagedCharactersUseCase: PagedCharactersUseCase
 ): ViewModel() {
 
-    init {
-        getCharacters()
-    }
-
     private val _pagedCharacters = MutableSharedFlow<PagingData<CharacterUi>>()
     val pagedCharacters: Flow<PagingData<CharacterUi>>
         get() = _pagedCharacters.asSharedFlow()
 
-    private fun getCharacters(page: Int = 1, size: Int = 25){
+    fun getCharacters(page: Int = 1, size: Int = 25){
         viewModelScope.launch {
             pagedCharactersUseCase.invoke(page= page, size = size)
                 .cachedIn(viewModelScope).collectLatest {

@@ -20,10 +20,6 @@ class HousesViewModel @Inject constructor(
     private val housesUseCase: PagedHousesUseCase
 ): ViewModel() {
 
-    init {
-        getHouses()
-    }
-
     private val _pagedHouses = MutableSharedFlow<PagingData<HouseUi>>()
     val pagedHouses: Flow<PagingData<HouseUi>>
         get() = _pagedHouses.asSharedFlow()

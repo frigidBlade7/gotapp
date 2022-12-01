@@ -7,12 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.navGraphViewModels
 import androidx.paging.LoadState
-import com.zatec.features.characters.ui.CharactersListAdapter
 import com.zatec.features.houses.ui.HousesListAdapter
 import com.zatec.features.houses.viewmodels.HousesViewModel
 import com.zatec.gotapp.core.ui.BaseLoadStateAdapter
@@ -44,11 +41,9 @@ class HousesListFragment : Fragment() {
 
         binding.recyclerView.adapter = adapter.withLoadStateFooter(BaseLoadStateAdapter())
 
-        lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewmodel.pagedHouses.collect {
-                    adapter.submitData(it)
-                }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewmodel.pagedHouses.collect {
+                adapter.submitData(viewLifecycleOwner.lifecycle, it)
             }
         }
 
@@ -82,6 +77,8 @@ class HousesListFragment : Fragment() {
                 }
             }
         }
+
+        viewmodel.getHouses()
         return binding.root
     }
 }

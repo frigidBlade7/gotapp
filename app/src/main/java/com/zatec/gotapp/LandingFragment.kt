@@ -26,6 +26,7 @@ class LandingFragment : Fragment() {
 
         binding.bottomNavView.setupWithNavController(navHostFragment.findNavController())
 
+        binding.bottomNavView.setOnItemReselectedListener {  }
         return binding.root
     }
 }
