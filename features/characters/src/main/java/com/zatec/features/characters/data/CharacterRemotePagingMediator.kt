@@ -4,19 +4,15 @@ import androidx.paging.*
 import androidx.room.withTransaction
 import com.zatec.features.characters.persistence.CharacterData
 import com.zatec.features.characters.usecase.QueryCharactersUseCase
-import com.zatec.gotapp.core.utils.IOContext
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
-import kotlin.coroutines.CoroutineContext
 
 @OptIn(ExperimentalPagingApi::class)
 class CharacterRemotePagingMediator @AssistedInject constructor(
     private val queryCharactersUseCase: QueryCharactersUseCase,
-    @IOContext private val coroutineContext: CoroutineContext,
     @Assisted private var page: Int?,
     @Assisted private val size: Int,
     private val database: CharacterDatabase
