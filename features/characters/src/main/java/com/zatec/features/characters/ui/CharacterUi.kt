@@ -23,8 +23,8 @@ data class CharacterUi(
     }
 }
 
-fun CharacterUi.displayTitles(): String{
-    return titles.joinToString(separator = ", ")
+fun CharacterUi?.displayTitles(): String{
+    return this?.titles?.joinToString(separator = ", ")?:""
 }
 
 fun CharacterUi.displayActors(): String{

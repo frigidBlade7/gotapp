@@ -10,6 +10,7 @@ buildscript {
         room_runtime = "androidx.room:room-runtime:$room_version"
         room_ktx =  "androidx.room:room-ktx:$room_version"
         room_paging = "androidx.room:room-paging:$room_version"
+        room_compiler = "androidx.room:room-compiler:$room_version"
         paging = "androidx.paging:paging-runtime-ktx:3.1.1"
         swipe_refresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
         fragment_ktx = "androidx.fragment:fragment-ktx:1.5.4"

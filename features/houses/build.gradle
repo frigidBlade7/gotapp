@@ -11,6 +11,8 @@ android {
 }
 dependencies {
     implementation project(path: ':features:core')
+    kapt "$room_runtime"
+    kapt "$room_compiler"
 
     implementation "$hilt_android"
     kapt "$hilt_android_kapt"

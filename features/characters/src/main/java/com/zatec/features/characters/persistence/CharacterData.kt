@@ -2,6 +2,7 @@ package com.zatec.features.characters.persistence
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.zatec.features.characters.ui.CharacterUi
 
 @Entity
 class CharacterData (
@@ -24,3 +25,24 @@ class CharacterData (
     @PrimaryKey
     val id: String = "",
 )
+
+fun CharacterData.toUi(): CharacterUi {
+    return CharacterUi(
+        aliases,
+        allegiances,
+        books,
+        born,
+        culture,
+        died,
+        father,
+        gender,
+        mother,
+        name,
+        playedBy,
+        povBooks,
+        spouse,
+        titles,
+        tvSeries,
+        url
+    )
+}

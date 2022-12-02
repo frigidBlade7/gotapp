@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 class HouseData (
     val ancestralWeapons: List<String> = listOf(),
-    val cadetBranches: List<Any> = listOf(),
+    val cadetBranches: List<String> = listOf(),
     val coatOfArms: String = "",
     val currentLord: String= "",
     val diedOut: String= "",
@@ -17,9 +17,9 @@ class HouseData (
     val overlord: String= "",
     val region: String= "",
     val seats: List<String> = listOf(),
-    val swornMembers: List<Any> = listOf(),
+    val swornMembers: List<String> = listOf(),
     val titles: List<String> = listOf(),
     val url: String ="",
     val words: String ="",
     @PrimaryKey
-    val id: String = "",)
+    val id: String = "")

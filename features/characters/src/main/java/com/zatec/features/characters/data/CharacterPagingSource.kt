@@ -9,7 +9,7 @@ import timber.log.Timber
 import java.io.IOException
 
 class CharacterPagingSource(
-    private val queryHousesUseCase: QueryCharactersUseCase,
+    private val queryCharactersUseCase: QueryCharactersUseCase,
     private val page: Int,
     private val size: Int
     ): PagingSource<Int, CharacterUi>(){
@@ -27,7 +27,7 @@ class CharacterPagingSource(
         return try {
             var pagedData: List<CharacterResponse>
             var nextKey: Int?
-            val response =  queryHousesUseCase.invoke(size= size, page= currentPage)
+            val response =  queryCharactersUseCase.invoke(size= size, page= currentPage)
 
             lateinit var result: LoadResult<Int,CharacterUi>
 

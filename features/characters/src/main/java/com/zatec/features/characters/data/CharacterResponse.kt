@@ -1,10 +1,12 @@
 package com.zatec.features.characters.data
 
+import android.net.Uri
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import com.zatec.features.characters.persistence.CharacterData
 import com.zatec.features.characters.ui.CharacterUi
 import com.zatec.gotapp.core.data.DataMapper
+import java.util.UUID
 
 @JsonClass(generateAdapter = true)
 data class CharacterResponse(
@@ -42,7 +44,25 @@ data class CharacterResponse(
     val url: String?
 ): DataMapper<CharacterResponse, CharacterData, CharacterUi> {
     override fun toData(): CharacterData {
-        return CharacterData()
+        return CharacterData(
+            aliases?: listOf(),
+            allegiances?: listOf(),
+            books?: listOf(),
+            born?: "",
+            culture?: "",
+            died?: "",
+            father?: "",
+            gender?: "",
+            mother?: "",
+            name?: "",
+            playedBy?: listOf(),
+            povBooks?: listOf(),
+            spouse?: "",
+            titles?: listOf(),
+            tvSeries?: listOf(),
+            url?: "",
+            id = Uri.parse(url).lastPathSegment?:UUID.randomUUID().toString()
+        )
     }
 
     override fun toUi(): CharacterUi {

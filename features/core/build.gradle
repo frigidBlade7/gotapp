@@ -20,6 +20,7 @@ dependencies {
     api "$fragment_ktx"
 
     kapt "$room_runtime"
+    kapt "$room_compiler"
     api "$room_ktx"
     api "$room_paging"
 

@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class DataModule {
+object DataModule {
     @Singleton
     @Provides
     fun providesDatabase(@ApplicationContext context: Context,
@@ -33,7 +33,7 @@ class DataModule {
 
     @Singleton
     @Provides
-    fun providesBookDao(database: CharacterDatabase): CharacterDao {
+    fun providesCharacterDao(database: CharacterDatabase): CharacterDao {
         return database.characterDao()
     }
 }
