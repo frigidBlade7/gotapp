@@ -55,6 +55,7 @@ class CharactersListFragment : Fragment() {
             adapter.loadStateFlow.collectLatest {
                 Timber.d(it.toString())
 
+
                 when (it.source.refresh) {
                     is LoadState.Error -> {
                         binding.swipeRefreshLayout.isRefreshing = false

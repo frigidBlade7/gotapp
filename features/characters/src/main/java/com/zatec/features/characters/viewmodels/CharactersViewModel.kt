@@ -24,7 +24,7 @@ class CharactersViewModel @Inject constructor(
     val pagedCharacters: Flow<PagingData<CharacterUi>>
         get() = _pagedCharacters.asSharedFlow()
 
-    fun getCharacters(page: Int = 1, size: Int = 25){
+    fun getCharacters(page: Int = 1, size: Int = 50){
         viewModelScope.launch {
             pagedCharactersUseCase.invoke(page= page, size = size)
                 .cachedIn(viewModelScope).collectLatest {

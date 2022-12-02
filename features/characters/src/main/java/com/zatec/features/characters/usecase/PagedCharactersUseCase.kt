@@ -1,24 +1,29 @@
 package com.zatec.features.characters.usecase
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import com.zatec.features.characters.data.CharacterPagingSource
+import androidx.paging.*
+import com.zatec.features.characters.data.CharacterDatabase
+import com.zatec.features.characters.data.CharacterRemotePagingMediatorFactory
+import com.zatec.features.characters.persistence.toUi
 import com.zatec.features.characters.ui.CharacterUi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class PagedCharactersUseCase @Inject constructor(
-    private val queryCharactersUseCase: QueryCharactersUseCase
+    private val database: CharacterDatabase,
+    private val remoteMediatorFactory: CharacterRemotePagingMediatorFactory
 ) {
+    @OptIn(ExperimentalPagingApi::class)
     fun invoke(size: Int, page: Int): Flow<PagingData<CharacterUi>> {
         val config = PagingConfig(
             pageSize = size,
             prefetchDistance = 3,
             enablePlaceholders = true
         )
-        return Pager(config) {
-            CharacterPagingSource(queryCharactersUseCase, page = page, size = size)
-        }.flow
+        return Pager(
+            config = config,
+            pagingSourceFactory = { database.characterDao().getPagedCharacters() },
+            remoteMediator = remoteMediatorFactory.create(page, size)
+        ).flow.map {it.map { data -> data.toUi() }}
     }
 }
