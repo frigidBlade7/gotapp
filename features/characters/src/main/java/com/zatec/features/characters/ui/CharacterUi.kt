@@ -27,6 +27,6 @@ fun CharacterUi?.displayTitles(): String{
     return this?.titles?.joinToString(separator = ", ")?:""
 }
 
-fun CharacterUi.displayActors(): String{
-    return if(playedBy[0].isEmpty())"" else "Played by: ${playedBy.joinToString(separator = ", ")}"
+fun CharacterUi?.displayActors(): String{
+    return if(this?.playedBy?.get(0)?.isEmpty() == true)"" else "Played by: ${this?.playedBy?.joinToString(separator = ", ")?:""}"
 }

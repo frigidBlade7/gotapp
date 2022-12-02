@@ -28,7 +28,7 @@ class CharacterRemotePagingMediator @AssistedInject constructor(
 
         page = when(loadType){
             LoadType.REFRESH ->{
-                page?:1
+                1
             }
             LoadType.PREPEND -> {
                 val prev = page?.minus(1)
