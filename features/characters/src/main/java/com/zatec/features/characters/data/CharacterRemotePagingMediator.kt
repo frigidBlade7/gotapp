@@ -10,12 +10,23 @@ import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
 
+
+/**
+ * Character remote paging mediator
+ *
+ * @property queryCharactersUseCase api usecase to request character data
+ * @property page page number of items to be loaded
+ * @property size number of items per page
+ * @property database containing table for [CharacterData] objects
+ * @constructor Create empty Character remote paging mediator
+ */
 @OptIn(ExperimentalPagingApi::class)
 class CharacterRemotePagingMediator @AssistedInject constructor(
     private val queryCharactersUseCase: QueryCharactersUseCase,
     @Assisted private var page: Int?,
     @Assisted private val size: Int,
     private val database: CharacterDatabase
+    //todo can inject CharacterRepo here to interface with both usecase and data
 ): RemoteMediator<Int, CharacterData>() {
     override suspend fun load(
         loadType: LoadType,
@@ -74,8 +85,20 @@ class CharacterRemotePagingMediator @AssistedInject constructor(
 }
 
 
+/**
+ * Character remote paging mediator factory
+ * factory to help assisted injection of dynamic page number and size
+ * @constructor Create empty Character remote paging mediator factory
+ */
 @AssistedFactory
 interface CharacterRemotePagingMediatorFactory {
+    /**
+     * Create
+     *
+     * @param page page number of items to be loaded
+     * @param size number of items per page
+     * @return [CharacterRemotePagingMediator] object with usecase and database injected
+     */
     fun create(page: Int? = null, size: Int = 50): CharacterRemotePagingMediator
 }
 

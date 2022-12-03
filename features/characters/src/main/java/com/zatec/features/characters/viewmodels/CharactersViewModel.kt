@@ -15,6 +15,12 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
+/**
+ * Books view model
+ * viewmodel for ListFragment
+ * @property pagedCharactersUseCase use case for paging characters from api and room
+ * @constructor Create empty Books view model
+ */
 @HiltViewModel
 class CharactersViewModel @Inject constructor(
     private val pagedCharactersUseCase: PagedCharactersUseCase

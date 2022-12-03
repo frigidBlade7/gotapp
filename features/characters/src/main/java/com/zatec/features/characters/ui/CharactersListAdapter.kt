@@ -9,6 +9,13 @@ import com.zatec.features.characters.BR
 
 import com.zatec.gotapp.core.ui.BaseViewHolder
 
+
+/**
+ * Characters list adapter
+ *
+ * @property onItemClicked function that executes when an item is tapped
+ * @constructor Create empty Characters list adapter
+ */
 class CharactersListAdapter(
     private val onItemClicked: (book: CharacterUi) -> Unit = {}
 ) : PagingDataAdapter<CharacterUi, CharacterUiViewHolder>(diffCallback) {
@@ -34,6 +41,13 @@ class CharactersListAdapter(
     }
 }
 
+/**
+ * Character ui view holder
+ *
+ * @constructor
+ *
+ * @param binding databinding instance of each view item
+ */
 class CharacterUiViewHolder(binding: CharacterItemBinding) :
     BaseViewHolder(binding, BR.item)
 

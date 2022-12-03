@@ -9,8 +9,31 @@ import java.io.IOException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
+/**
+ * Api response class to wrap and handle all response types
+ *
+ * @param T data type of response
+ * @constructor Create empty Api response
+ */
 sealed class ApiResponse<T> {
+    /**
+     * Success
+     *
+     * @param T data type of response
+     * @property data response data
+     * @property lastPage for paged responses, the last page number per the page size
+     * @constructor Create empty Success
+     */
     data class Success<T>(val data: T? = null, val lastPage: Int? = null): ApiResponse<T>()
+
+    /**
+     * Error
+     *
+     * @param T data type of response, unused atm
+     * @property code error code if any, or null if an error message exists
+     * @property message error message if any, or null if an error code exists
+     * @constructor Create empty Error
+     */
     data class Error<T>(val code: Int? = null, val message: String? = null): ApiResponse<T>()
 
     companion object {
@@ -36,7 +59,7 @@ sealed class ApiResponse<T> {
             return if (response.isSuccessful){
                 val body = response.body()
                 if (body == null) {
-                    Error(message = "empty body")
+                    Error(message = "empty body") //return an error if the body is null
                 }
                 else {
                     var lastPage: Int? = null

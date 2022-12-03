@@ -8,9 +8,22 @@ import com.zatec.gotapp.books.ui.BookUi
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/**
+ * Paged books use case
+ *
+ * @property queryBooksUseCase inject use case for fetching books page from api
+ * @constructor Create empty Paged books use case
+ */
 class PagedBooksUseCase @Inject constructor(
     private val queryBooksUseCase: QueryBooksUseCase
 ) {
+    /**
+     * Invoke
+     *
+     * @param size number of items per page
+     * @param page page number
+     * @return
+     */
     fun invoke(size: Int, page: Int): Flow<PagingData<BookUi>> {
         val config = PagingConfig(
             pageSize = size,

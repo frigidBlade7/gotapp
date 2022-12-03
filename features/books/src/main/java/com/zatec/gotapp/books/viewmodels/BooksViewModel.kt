@@ -15,6 +15,12 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
+/**
+ * Books view model
+ * viewmodel for [BooksListFragment]
+ * @property booksUseCase use case for paging books from api
+ * @constructor Create empty Books view model
+ */
 @HiltViewModel
 class BooksViewModel @Inject constructor(
     private val booksUseCase: PagedBooksUseCase
@@ -24,6 +30,12 @@ class BooksViewModel @Inject constructor(
     val pagedBooks: Flow<PagingData<BookUi>>
         get() = _pagedBooks.asSharedFlow()
 
+    /**
+     * Get books
+     *
+     * @param page page number for request
+     * @param size number of items per page
+     */
     fun getBooks(page: Int = 1, size: Int = 10){
         viewModelScope.launch {
             booksUseCase.invoke(page= page, size = size)

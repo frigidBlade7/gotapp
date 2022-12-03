@@ -1,5 +1,26 @@
 package com.zatec.features.houses.ui
 
+/**
+ * House ui
+ * ui component of [HouseData] object
+ * @property ancestralWeapons
+ * @property cadetBranches
+ * @property coatOfArms
+ * @property currentLord
+ * @property diedOut
+ * @property founded
+ * @property founder
+ * @property heir
+ * @property name
+ * @property overlord
+ * @property region
+ * @property seats
+ * @property swornMembers
+ * @property titles
+ * @property url
+ * @property words
+ * @constructor Create empty House ui
+ */
 data class HouseUi (
     val ancestralWeapons: List<String>,
     val cadetBranches: List<Any>,
@@ -19,6 +40,11 @@ data class HouseUi (
     val words: String
 )
 
+/**
+ * Display seats
+ *
+ * @return
+ */
 fun HouseUi.displaySeats(): String{
     return seats.joinToString(separator = ", ")
 }

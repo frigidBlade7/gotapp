@@ -3,6 +3,23 @@ package com.zatec.gotapp.books.persistence
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * Book data object to store book info in room db
+ *
+ * @property authors
+ * @property characters
+ * @property country
+ * @property isbn
+ * @property mediaType
+ * @property name
+ * @property numberOfPages
+ * @property povCharacters
+ * @property publisher
+ * @property released
+ * @property url
+ * @property id
+ * @constructor Create empty [BookData]
+ */
 @Entity
 class BookData (
     val authors: List<String> = listOf(),

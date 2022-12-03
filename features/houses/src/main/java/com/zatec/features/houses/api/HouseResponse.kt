@@ -1,4 +1,4 @@
-package com.zatec.features.houses.data
+package com.zatec.features.houses.api
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -6,6 +6,27 @@ import com.zatec.features.houses.persistence.HouseData
 import com.zatec.features.houses.ui.HouseUi
 import com.zatec.gotapp.core.data.DataMapper
 
+/**
+ * House response house response object from api parsed
+ *
+ * @property ancestralWeapons
+ * @property cadetBranches
+ * @property coatOfArms
+ * @property currentLord
+ * @property diedOut
+ * @property founded
+ * @property founder
+ * @property heir
+ * @property name
+ * @property overlord
+ * @property region
+ * @property seats
+ * @property swornMembers
+ * @property titles
+ * @property url
+ * @property words
+ * @constructor Create empty House response
+ */
 @JsonClass(generateAdapter = true)
 data class HouseResponse(
     @Json(name = "ancestralWeapons")

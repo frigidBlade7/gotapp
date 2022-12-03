@@ -8,6 +8,15 @@ import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
 import java.io.IOException
 
+
+/**
+ * Character paging source, currently unused in favor of [CharacterRemotePagingMediator]
+ *
+ * @property queryCharactersUseCase api request use case for queries
+ * @property page page of items to be loaded
+ * @property size number of items per page
+ * @constructor Create empty Character paging source
+ */
 class CharacterPagingSource(
     private val queryCharactersUseCase: QueryCharactersUseCase,
     private val page: Int,

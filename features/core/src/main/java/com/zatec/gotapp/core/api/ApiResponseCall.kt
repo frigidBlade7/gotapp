@@ -7,6 +7,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
+/**
+ * Api response call
+ *
+ * @param T data type of response
+ * @property call
+ * @constructor Create empty Api response call
+ */
 class ApiResponseCall<T>(private val call: Call<T>): Call<ApiResponse<T>> {
 
     //wrap in ApiResponseCall
@@ -17,7 +24,8 @@ class ApiResponseCall<T>(private val call: Call<T>): Call<ApiResponse<T>> {
     override fun execute(): Response<ApiResponse<T>> =
         throw UnsupportedOperationException("Requests should not be async")
 
-    //handle success and failure
+    //delegate handling of success and failure to ApiResponse class in enqueue
+    //the rest of the functions can remain unchanged (we still need to override them)
     override fun enqueue(callback: Callback<ApiResponse<T>>) {
         call.enqueue(object : Callback<T> {
             override fun onResponse(call: Call<T>, response: Response<T>) {

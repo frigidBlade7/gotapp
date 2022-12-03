@@ -5,6 +5,22 @@ import com.zatec.gotapp.books.ui.BookUi.Companion.serverFormat
 import timber.log.Timber
 import java.text.SimpleDateFormat
 
+/**
+ * Book ui  object to display book info in recycler view
+ *
+ * @property authors
+ * @property characters
+ * @property country
+ * @property isbn
+ * @property mediaType
+ * @property name
+ * @property numberOfPages
+ * @property povCharacters
+ * @property publisher
+ * @property released
+ * @property url
+ * @constructor Create empty Book ui
+ */
 data class BookUi (
     val authors: List<String>,
     val characters: List<String>,
@@ -24,10 +40,20 @@ data class BookUi (
     }
 }
 
+/**
+ * Display authors
+ *
+ * @return
+ */
 fun BookUi.displayAuthors(): String{
     return authors.joinToString(separator = ", ")
 }
 
+/**
+ * Format date
+ * extension function
+ * @return date formatted in the pattern of [serverFormat]
+ */
 fun BookUi.formatDate(): String{
 
     return try {

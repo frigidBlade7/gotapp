@@ -12,7 +12,11 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-
+/**
+ * Character data module
+ *  module for injecting database components
+ * @constructor Create Charater data module
+ */
 @InstallIn(SingletonComponent::class)
 @Module
 object DataModule {

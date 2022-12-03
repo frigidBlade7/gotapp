@@ -8,6 +8,12 @@ import com.zatec.features.books.BR
 import com.zatec.features.books.databinding.BookItemBinding
 import com.zatec.gotapp.core.ui.BaseViewHolder
 
+/**
+ * Books list adapter
+ *
+ * @property onItemClicked function param to execute when tapping on an item in booksadapter recycler view
+ * @constructor Create empty Books list adapter
+ */
 class BooksListAdapter(
     private val onItemClicked: (book: BookUi) -> Unit = {}
 ) : PagingDataAdapter<BookUi, BookUiViewHolder>(diffCallback) {
@@ -22,7 +28,9 @@ class BooksListAdapter(
         parent: ViewGroup,
         viewType: Int
     ): BookUiViewHolder {
-        val binding = BookItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = BookItemBinding.inflate(LayoutInflater.from(parent.context),
+            parent,
+            false)
         val viewHolder = BookUiViewHolder(binding)
         binding.root.setOnClickListener {
             getItem(viewHolder.bindingAdapterPosition)?.let {
@@ -33,9 +41,17 @@ class BooksListAdapter(
     }
 }
 
+/**
+ * Book ui view holder
+ *
+ * @constructor
+ *
+ * @param binding is the databinding layout for the book item
+ */
 class BookUiViewHolder(binding: BookItemBinding) :
     BaseViewHolder(binding, BR.item )
 
+//diffutil to check item dataclass for changes
 val diffCallback = object : DiffUtil.ItemCallback<BookUi>() {
     override fun areItemsTheSame(
         oldItem: BookUi,

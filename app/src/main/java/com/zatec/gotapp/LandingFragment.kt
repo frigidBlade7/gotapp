@@ -11,6 +11,13 @@ import androidx.navigation.ui.setupWithNavController
 import com.zatec.gotapp.databinding.FragmentLandingBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+
+/**
+ * Landing fragment
+ *
+ * Create home fragment as base for all ui
+ * links bottom nav view with its navcontroller
+ */
 @AndroidEntryPoint
 class LandingFragment : Fragment() {
 

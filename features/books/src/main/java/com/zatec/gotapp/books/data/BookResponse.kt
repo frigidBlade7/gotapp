@@ -6,6 +6,22 @@ import com.zatec.gotapp.books.persistence.BookData
 import com.zatec.gotapp.books.ui.BookUi
 import com.zatec.gotapp.core.data.DataMapper
 
+/**
+ * Book response
+ * Json object mapping for a book from api
+ * @property authors
+ * @property characters
+ * @property country
+ * @property isbn
+ * @property mediaType
+ * @property name
+ * @property numberOfPages
+ * @property povCharacters
+ * @property publisher
+ * @property released
+ * @property url
+ * @constructor Create empty Book response
+ */
 @JsonClass(generateAdapter = true)
 data class BookResponse(
     @Json(name = "authors")

@@ -2,12 +2,22 @@ package com.zatec.features.houses.data
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.zatec.features.houses.api.HouseResponse
 import com.zatec.features.houses.ui.HouseUi
 import com.zatec.features.houses.usecase.QueryHousesUseCase
 import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
 import java.io.IOException
 
+
+/**
+ * Houses paging source
+ *
+ * @property queryHousesUseCase use case implementation for api queries
+ * @property page page number of query
+ * @property size items per page
+ * @constructor Create empty Houses paging source
+ */
 class HousesPagingSource(
     private val queryHousesUseCase: QueryHousesUseCase,
     private val page: Int,
