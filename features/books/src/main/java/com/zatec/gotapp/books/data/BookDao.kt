@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 
 /**
  * Book dao
- * Data access object for book data stored in room db
+ * Data access object for [BookData] stored in room db
  * currently unused
  * @constructor Create empty Book dao
  */
@@ -28,7 +28,7 @@ interface BookDao {
 
     /**
      * Get books
-     * returns a list of all book data objects from room
+     * returns a list of all [BookData] objects from room
      * @return
      */
     @Transaction

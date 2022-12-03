@@ -3,6 +3,28 @@ package com.zatec.features.houses.persistence
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * House data parsed from json [HouseResponse]
+ *
+ * @property ancestralWeapons
+ * @property cadetBranches
+ * @property coatOfArms
+ * @property currentLord
+ * @property diedOut
+ * @property founded
+ * @property founder
+ * @property heir
+ * @property name
+ * @property overlord
+ * @property region
+ * @property seats
+ * @property swornMembers
+ * @property titles
+ * @property url
+ * @property words
+ * @property id
+ * @constructor Create empty House data
+ */
 @Entity
 class HouseData (
     val ancestralWeapons: List<String> = listOf(),

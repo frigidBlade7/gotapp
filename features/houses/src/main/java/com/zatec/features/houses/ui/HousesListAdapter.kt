@@ -8,6 +8,12 @@ import com.zatec.features.houses.BR
 import com.zatec.features.houses.databinding.HouseItemBinding
 import com.zatec.gotapp.core.ui.BaseViewHolder
 
+/**
+ * Houses list adapter
+ *
+ * @property onItemClicked function to execute when an item is tapped
+ * @constructor Create empty Houses list adapter
+ */
 class HousesListAdapter(
     private val onItemClicked: (book: HouseUi) -> Unit = {}
 ) : PagingDataAdapter<HouseUi, HouseUiViewHolder>(diffCallback) {
@@ -33,6 +39,13 @@ class HousesListAdapter(
     }
 }
 
+/**
+ * House ui view holder
+ *
+ * @constructor
+ *
+ * @param binding databinding layout of the
+ */
 class HouseUiViewHolder(binding: HouseItemBinding) :
     BaseViewHolder(binding, BR.item)
 

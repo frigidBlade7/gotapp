@@ -18,7 +18,7 @@ import androidx.room.PrimaryKey
  * @property released
  * @property url
  * @property id
- * @constructor Create empty Book data
+ * @constructor Create empty [BookData]
  */
 @Entity
 class BookData (

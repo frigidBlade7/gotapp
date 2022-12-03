@@ -15,14 +15,14 @@ interface DataMapper<R,D,U> {
     /**
      * To data
      *
-     * @return
+     * @return object of [R] data type as an object of [D] data type
      */
     fun toData(): D
 
     /**
      * To ui
      *
-     * @return
+     * @return an object of [R] data type as an object of [U] data type
      */
     fun toUi(): U
 }
