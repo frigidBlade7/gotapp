@@ -11,9 +11,16 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
 object NetworkConstants {
-    const val API_TIMEOUT = 60L
+    const val API_TIMEOUT = 60L //api timeout 60secs
 }
 
+/**
+ * Flow result
+ *
+ * @param T data type of flow
+ * @param coroutine the suspend function that returns some ApiResponse<T>
+ * @receiver
+ */
 fun <T> flowResult(coroutine: suspend () -> ApiResponse<T>) = flow {
 
     emit(UiResult.loading())
@@ -22,6 +29,7 @@ fun <T> flowResult(coroutine: suspend () -> ApiResponse<T>) = flow {
         val apiResponse =  coroutine.invoke()
         Timber.d(apiResponse.toString())
         when(apiResponse){
+            //create UiResult object from ApiResponse on success or failure
             is ApiResponse.Success -> {
                 Timber.d(apiResponse.data.toString())
                 emit(UiResult.success(data = apiResponse.data, lastPage = apiResponse.lastPage))
@@ -34,6 +42,7 @@ fun <T> flowResult(coroutine: suspend () -> ApiResponse<T>) = flow {
         }
 
     }catch (exception: Exception){
+        //emit UiResult when an error is met
         Timber.e(exception)
         when(exception){
             is UnknownHostException -> emit(UiResult.error(errorCode = R.string.network_error))

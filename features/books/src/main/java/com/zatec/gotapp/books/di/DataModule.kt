@@ -13,6 +13,11 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 
+/**
+ * Books network module
+ *  module for injecting database components
+ * @constructor Create Books data module
+ */
 @InstallIn(SingletonComponent::class)
 @Module
 object DataModule {

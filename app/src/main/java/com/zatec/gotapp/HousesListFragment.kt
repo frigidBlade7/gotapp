@@ -18,7 +18,15 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
-
+/**
+ * House list fragment
+ * Displays a list of houses from api only
+ * binding is the layout databinding file
+ * viewmodel contains the paging flow info
+ * adapter handles the data to display in the recycler view
+ * you can pull down from the top of the list to refresh the data
+ * tapping an item shows the house name in a toast
+ */
 @AndroidEntryPoint
 class HousesListFragment : Fragment() {
 

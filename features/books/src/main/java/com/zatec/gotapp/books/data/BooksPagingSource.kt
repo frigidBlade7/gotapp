@@ -8,6 +8,14 @@ import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
 import java.io.IOException
 
+/**
+ * Books paging source
+ *
+ * @property queryBooksUseCase use case to query book items
+ * @property page page number to request
+ * @property size no of books per page
+ * @constructor Create empty Books paging source
+ */
 class BooksPagingSource (
     private val queryBooksUseCase: QueryBooksUseCase,
     private val page: Int,

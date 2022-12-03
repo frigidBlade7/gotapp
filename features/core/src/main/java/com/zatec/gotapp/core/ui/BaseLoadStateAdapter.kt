@@ -6,6 +6,11 @@ import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import com.zatec.features.core.databinding.LoadStateItemBinding
 
+/**
+ * Base load state adapter
+ * Adapter to show loading state of items in a recycler view
+ * @constructor Create empty Base load state adapter
+ */
 class BaseLoadStateAdapter(
 ) : LoadStateAdapter<LoadStateViewHolder>() {
 

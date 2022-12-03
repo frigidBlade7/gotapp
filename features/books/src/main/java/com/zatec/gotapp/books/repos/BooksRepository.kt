@@ -5,6 +5,12 @@ import com.zatec.gotapp.books.data.BookResponse
 import com.zatec.gotapp.core.api.ApiResponse
 import javax.inject.Inject
 
+/**
+ * Books repository
+ * implementation of [BooksRepo]
+ * @property booksApi
+ * @constructor Create empty Books repository
+ */
 class BooksRepository @Inject constructor(
     private val booksApi: BooksApi
 ): BooksRepo{

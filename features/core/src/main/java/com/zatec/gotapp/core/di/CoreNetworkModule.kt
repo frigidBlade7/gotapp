@@ -22,10 +22,21 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 import kotlin.coroutines.CoroutineContext
 
+/**
+ * Core network module
+ * Injects networking components as singleton
+ * @constructor Create empty Core network module
+ */
 @InstallIn(SingletonComponent::class)
 @Module
 class CoreNetworkModule {
 
+    /**
+     * Provides http request cache
+     *
+     * @param context is the application context
+     * @return
+     */
     @Singleton
     @Provides
     fun providesHttpRequestCache(@ApplicationContext context: Context): Cache {
@@ -33,6 +44,11 @@ class CoreNetworkModule {
         return Cache(File.createTempFile("http_cache",null,context.cacheDir), cacheSize.toLong())
     }
 
+    /**
+     * Provides http logger
+     * prints http request response data to Logcat
+     * @return
+     */
     @Singleton
     @Provides
     fun providesHttpLogger(): HttpLoggingInterceptor {
@@ -42,6 +58,13 @@ class CoreNetworkModule {
         return httpLoggingInterceptor
     }
 
+    /**
+     * Provides http client
+     *
+     * @param httpLoggingInterceptor
+     * @param cache
+     * @return
+     */
     @Singleton
     @Provides
     fun providesHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor, cache: Cache): OkHttpClient {
@@ -55,12 +78,23 @@ class CoreNetworkModule {
         return client
     }
 
+    /**
+     * Provides moshi for json parsing
+     * @return
+     */
     @Provides
     @Singleton
     fun providesMoshi(): Moshi{
         return Moshi.Builder().build()
     }
 
+    /**
+     * Provides retrofit as our http request-response client
+     *
+     * @param okHttpClient
+     * @param moshi
+     * @return
+     */
     @Provides
     @Singleton
     fun providesRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
@@ -73,6 +107,11 @@ class CoreNetworkModule {
         return retrofitBuilder.build()
     }
 
+    /**
+     * Provides coroutine context
+     *
+     * @return
+     */
     @Provides
     @Singleton
     @IOContext
