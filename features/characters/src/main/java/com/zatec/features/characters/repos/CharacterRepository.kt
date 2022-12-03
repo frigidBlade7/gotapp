@@ -8,6 +8,14 @@ import com.zatec.gotapp.core.api.ApiResponse
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+
+/**
+ * Character repository
+ * implementation of [CharactersRepo] to provide CRUD interactions with api and db
+ * @property charactersApi api for fetching character info
+ * @property database room db to cache responses
+ * @constructor Create empty Character repository
+ */
 class CharacterRepository @Inject constructor(
     private val charactersApi: CharactersApi,
     private val database: CharacterDatabase
@@ -22,6 +30,10 @@ class CharacterRepository @Inject constructor(
 
     override fun getCharacterFromCache(characterId: String): Flow<CharacterData> {
         return database.characterDao().getCharacterById(characterId)
+    }
+
+    override fun clearCharacterCache() {
+        database.characterDao().clear()
     }
 
 }

@@ -9,14 +9,32 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+/**
+ * Characters api
+ * rest client interface for api calls
+ * @constructor Create empty Characters api
+ */
 interface CharactersApi {
 
+    /**
+     * Query characters
+     *
+     * @param page page number of the request
+     * @param pageSize number of items per page
+     * @return
+     */
     @GET("$api$Characters")
     suspend fun queryCharacters(
         @Query(QueryParams.page) page: Int?,
         @Query(QueryParams.pageSize) pageSize: Int?
     ): ApiResponse<List<CharacterResponse>>
 
+    /**
+     * Get character by id
+     * api request to fetch specific character data by id
+     * @param characterId
+     * @return
+     */
     @GET("$api$Characters$CharacterId")
     suspend fun getCharacterById(
         @Path(CharacterId) characterId: Int?

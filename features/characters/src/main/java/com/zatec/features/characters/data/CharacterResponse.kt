@@ -8,6 +8,28 @@ import com.zatec.features.characters.ui.CharacterUi
 import com.zatec.gotapp.core.data.DataMapper
 import java.util.UUID
 
+
+/**
+ * Character response json parsed character info object
+ *
+ * @property aliases
+ * @property allegiances
+ * @property books
+ * @property born
+ * @property culture
+ * @property died
+ * @property father
+ * @property gender
+ * @property mother
+ * @property name
+ * @property playedBy
+ * @property povBooks
+ * @property spouse
+ * @property titles
+ * @property tvSeries
+ * @property url
+ * @constructor Create empty Character response
+ */
 @JsonClass(generateAdapter = true)
 data class CharacterResponse(
     @Json(name = "aliases")

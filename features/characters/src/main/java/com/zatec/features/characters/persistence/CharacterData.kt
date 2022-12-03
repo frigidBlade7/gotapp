@@ -4,6 +4,29 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.zatec.features.characters.ui.CharacterUi
 
+
+/**
+ * Character data to store Character info from api into room database
+ *
+ * @property aliases
+ * @property allegiances
+ * @property books
+ * @property born
+ * @property culture
+ * @property died
+ * @property father
+ * @property gender
+ * @property mother
+ * @property name
+ * @property playedBy
+ * @property povBooks
+ * @property spouse
+ * @property titles
+ * @property tvSeries
+ * @property url
+ * @property id
+ * @constructor Create empty Character data
+ */
 @Entity
 class CharacterData (
     val aliases: List<String> = listOf(),
@@ -26,6 +49,11 @@ class CharacterData (
     val id: String = "",
 )
 
+/**
+ * To ui
+ *
+ * @return
+ */
 fun CharacterData.toUi(): CharacterUi {
     return CharacterUi(
         aliases,
