@@ -6,5 +6,6 @@
     <string name="pages_count">%1$d pages</string>
     <string name="quotes">\"%1$s\"</string>
     <string name="something_went_wrong">Loading stopped\nSomething went wrong</string>
+    <string name="display_houses">https://anapioficeandfire.com/api/houses/{id}</string>
 
 </resources>

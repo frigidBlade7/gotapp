@@ -1,7 +1,9 @@
 package com.zatec.features.houses.repos
 
 import com.zatec.features.houses.api.HouseResponse
+import com.zatec.features.houses.persistence.HouseData
 import com.zatec.gotapp.core.api.ApiResponse
+import kotlinx.coroutines.flow.Flow
 
 
 /**
@@ -25,12 +27,18 @@ interface HousesRepo {
      * @param houseId
      * @return [HouseResponse] wrapped as an [ApiResponse]
      */
-    suspend fun getHouseById(houseId: Int): ApiResponse<HouseResponse>
+    suspend fun getHouseById(houseId: String): ApiResponse<HouseResponse>
 
     /**
      * Get house from cache
      * return housedata object from cache
      * @param houseId
      */
-    fun getHouseFromCache(houseId: Int)
+    fun getHouseFromCache(houseId: String): Flow<HouseData?>
+
+    /**
+     * save house into room db
+     * @param houseData
+     */
+    suspend fun storeHouseInDb(houseData: HouseData)
 }

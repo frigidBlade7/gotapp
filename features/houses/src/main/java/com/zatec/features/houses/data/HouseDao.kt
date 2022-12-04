@@ -51,5 +51,5 @@ interface HouseDao {
      */
     @Transaction
     @Query("SELECT * FROM HouseData WHERE id IS :houseId LIMIT 1")
-    fun getHouseById(houseId: String): Flow<HouseData>
+    fun getHouseById(houseId: String): Flow<HouseData?>
 }

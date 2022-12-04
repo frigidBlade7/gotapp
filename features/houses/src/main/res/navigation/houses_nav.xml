@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/houses_nav"
+    app:startDestination="@id/displayHouseFragment">
+
+    <fragment
+        android:id="@+id/displayHouseFragment"
+        tools:layout="@layout/fragment_display_house"
+        android:name="com.zatec.features.houses.DisplayHouseFragment"
+        android:label="DisplayHouseFragment" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+
+        <deepLink app:uri="@string/display_houses"/>
+    </fragment>
+</navigation>

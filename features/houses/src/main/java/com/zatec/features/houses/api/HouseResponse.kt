@@ -1,10 +1,12 @@
 package com.zatec.features.houses.api
 
+import android.net.Uri
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import com.zatec.features.houses.persistence.HouseData
 import com.zatec.features.houses.ui.HouseUi
 import com.zatec.gotapp.core.data.DataMapper
+import java.util.*
 
 /**
  * House response house response object from api parsed
@@ -32,7 +34,7 @@ data class HouseResponse(
     @Json(name = "ancestralWeapons")
     val ancestralWeapons: List<String>?,
     @Json(name = "cadetBranches")
-    val cadetBranches: List<Any>?,
+    val cadetBranches: List<String>?,
     @Json(name = "coatOfArms")
     val coatOfArms: String?,
     @Json(name = "currentLord")
@@ -54,7 +56,7 @@ data class HouseResponse(
     @Json(name = "seats")
     val seats: List<String>?,
     @Json(name = "swornMembers")
-    val swornMembers: List<Any>?,
+    val swornMembers: List<String>?,
     @Json(name = "titles")
     val titles: List<String>?,
     @Json(name = "url")
@@ -63,7 +65,25 @@ data class HouseResponse(
     val words: String?
 ): DataMapper<HouseResponse, HouseData, HouseUi> {
     override fun toData(): HouseData {
-        return HouseData()
+        return HouseData(
+            ancestralWeapons?: listOf(),
+            cadetBranches?: listOf(),
+            coatOfArms?:"",
+            currentLord?:"",
+            diedOut?:"",
+            founded?:"",
+            founder?:"",
+            heir?: "",
+            name?:"",
+            overlord?:"",
+            region?:"",
+            seats?: listOf(),
+            swornMembers?: listOf(),
+            titles = titles?: listOf(),
+            url = url?:"",
+            words = words?:"",
+            id = Uri.parse(url).lastPathSegment?: UUID.randomUUID().toString()
+        )
     }
 
     override fun toUi(): HouseUi {

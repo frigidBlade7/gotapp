@@ -23,8 +23,10 @@ class HeaderInterceptor : Interceptor {
         val link = linkData?.split(",")?.find { it.contains("rel=\"last\"") }?.split(";")?.first()?.replace(
             ">","")?.replace("<","")
 
-        val pageParam = Uri.parse(link).getQueryParameter("page")
-        Timber.d(pageParam)
+        link?.apply {
+            val pageParam = Uri.parse(link).getQueryParameter("page")
+            Timber.d(pageParam)
+        }
         return response
     }
 }

@@ -11,6 +11,11 @@ android {
 }
 dependencies {
     implementation project(path: ':features:core')
+
+
+    implementation "$navigationFragment"
+    implementation "$navigationUi"
+
     kapt "$room_runtime"
     kapt "$room_compiler"
 
