@@ -1,8 +1,12 @@
 package com.zatec.features.houses.repos
 
+import androidx.room.withTransaction
 import com.zatec.features.houses.api.HousesApi
 import com.zatec.features.houses.api.HouseResponse
+import com.zatec.features.houses.data.HouseDatabase
+import com.zatec.features.houses.persistence.HouseData
 import com.zatec.gotapp.core.api.ApiResponse
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
@@ -12,7 +16,8 @@ import javax.inject.Inject
  * @constructor Create empty Houses repository
  */
 class HousesRepository @Inject constructor(
-    private val housesApi: HousesApi
+    private val housesApi: HousesApi,
+    private val houseDatabase: HouseDatabase
 ): HousesRepo{
 
     //api call to return houses in a page as a list
@@ -20,12 +25,18 @@ class HousesRepository @Inject constructor(
         housesApi.queryHouses(page = page, pageSize = size)
 
     //api call to return a particular house
-    override suspend fun getHouseById(houseId: Int): ApiResponse<HouseResponse> =
+    override suspend fun getHouseById(houseId: String): ApiResponse<HouseResponse> =
         housesApi.getHouseById(houseId)
 
 
-    override fun getHouseFromCache(houseId: Int) {
-        TODO("Not yet implemented")
+    override fun getHouseFromCache(houseId: String): Flow<HouseData?> =
+        houseDatabase.houseDao().getHouseById(houseId)
+
+    override suspend fun storeHouseInDb(houseData: HouseData) {
+        houseDatabase.withTransaction {
+            houseDatabase.houseDao().insert(houseData)
+        }
     }
+
 
 }

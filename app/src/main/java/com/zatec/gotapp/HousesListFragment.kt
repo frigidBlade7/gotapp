@@ -1,5 +1,6 @@
 package com.zatec.gotapp
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.paging.LoadState
 import com.zatec.features.houses.ui.HousesListAdapter
@@ -38,6 +40,7 @@ class HousesListFragment : Fragment() {
 
     private val adapter = HousesListAdapter {
         Toast.makeText(context, it.name, Toast.LENGTH_SHORT).show()
+        findNavController().navigate(Uri.parse(it.url))
     }
 
     override fun onCreateView(

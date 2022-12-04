@@ -34,9 +34,9 @@ interface HousesApi {
      * @param houseId
      * @return a list of houses wrapped by [ApiResponse]
      */
-    @GET("$api$houses$houseId")
+    @GET("$api$houses/{$houseId}")
     suspend fun getHouseById(
-        @Path(Routes.houseId) houseId: Int?
+        @Path(Routes.houseId) houseId: String
     ): ApiResponse<HouseResponse>
 
 }
@@ -44,7 +44,7 @@ interface HousesApi {
 object Routes {
     const val api = "/api"
     const val houses = "/houses"
-    const val houseId = "/{houseId}"
+    const val houseId = "houseId"
 }
 
 object QueryParams{

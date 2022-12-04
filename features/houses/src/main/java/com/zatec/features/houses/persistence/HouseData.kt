@@ -2,6 +2,7 @@ package com.zatec.features.houses.persistence
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.zatec.features.houses.ui.HouseUi
 
 /**
  * House data parsed from json [HouseResponse]
@@ -45,3 +46,24 @@ class HouseData (
     val words: String ="",
     @PrimaryKey
     val id: String = "")
+
+//extension function
+fun HouseData.toUi(): HouseUi {
+    return HouseUi(
+        ancestralWeapons,
+        cadetBranches,
+        coatOfArms,
+        currentLord,
+        diedOut,
+        founded,
+        founder,
+        heir,
+        name,
+        overlord,
+        region,
+        seats,
+        swornMembers,
+        titles,
+        url,
+        words)
+}

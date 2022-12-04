@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="close">Close</string>
+    <string name="seats">Seats:</string>
+    <string name="weapons">Ancestral Weapons:</string>
+    <string name="founded">Founded:</string>
+    <string name="died">Died out:</string>
+    <string name="unknown">Unknown</string>
+    <string name="coat_of_arms">Coat of arms:</string>
+    <string name="house_info">House Info</string>
+    <plurals name="seat_count">
+        <item quantity="one"><b>%1$d</b> seat</item>
+        <item quantity="other"><b>%1$d</b> seats</item>
+    </plurals>
+</resources>

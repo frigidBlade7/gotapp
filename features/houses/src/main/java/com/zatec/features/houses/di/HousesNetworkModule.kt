@@ -1,6 +1,7 @@
 package com.zatec.features.houses.di
 
 import com.zatec.features.houses.api.HousesApi
+import com.zatec.features.houses.data.HouseDatabase
 import com.zatec.features.houses.repos.HousesRepo
 import com.zatec.features.houses.repos.HousesRepository
 import dagger.Module
@@ -39,7 +40,7 @@ class HousesNetworkModule {
      */
     @Singleton
     @Provides
-    fun providesHousesRepo(booksApi: HousesApi): HousesRepo {
-        return HousesRepository(booksApi)
+    fun providesHousesRepo(booksApi: HousesApi, database: HouseDatabase): HousesRepo {
+        return HousesRepository(booksApi, database)
     }
 }

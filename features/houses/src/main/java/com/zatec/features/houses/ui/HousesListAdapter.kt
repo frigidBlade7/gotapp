@@ -63,6 +63,5 @@ val diffCallback = object : DiffUtil.ItemCallback<HouseUi>() {
     ): Boolean {
         return oldItem == newItem
     }
-
 }
 

@@ -21,4 +21,5 @@
         tools:layout="@layout/fragment_characters_list"
         android:name="com.zatec.gotapp.CharactersListFragment"
         android:label="CharactersListFragment" />
+    <include app:graph="@navigation/houses_nav" />
 </navigation>
