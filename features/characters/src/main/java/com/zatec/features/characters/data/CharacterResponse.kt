@@ -33,37 +33,37 @@ import java.util.UUID
 @JsonClass(generateAdapter = true)
 data class CharacterResponse(
     @Json(name = "aliases")
-    val aliases: List<String>?,
+    val aliases: List<String>? = null,
     @Json(name = "allegiances")
-    val allegiances: List<String>?,
+    val allegiances: List<String>? = null,
     @Json(name = "books")
-    val books: List<String>?,
+    val books: List<String>? = null,
     @Json(name = "born")
-    val born: String?,
+    val born: String? = null,
     @Json(name = "culture")
-    val culture: String?,
+    val culture: String? = null,
     @Json(name = "died")
-    val died: String?,
+    val died: String? = null,
     @Json(name = "father")
-    val father: String?,
+    val father: String? = null,
     @Json(name = "gender")
-    val gender: String?,
+    val gender: String? = null,
     @Json(name = "mother")
-    val mother: String?,
+    val mother: String? = null,
     @Json(name = "name")
-    val name: String?,
+    val name: String? = null,
     @Json(name = "playedBy")
-    val playedBy: List<String>?,
+    val playedBy: List<String>? = null,
     @Json(name = "povBooks")
-    val povBooks: List<String>?,
+    val povBooks: List<String>? = null,
     @Json(name = "spouse")
-    val spouse: String?,
+    val spouse: String? = null,
     @Json(name = "titles")
-    val titles: List<String>?,
+    val titles: List<String>? = null,
     @Json(name = "tvSeries")
-    val tvSeries: List<String>?,
+    val tvSeries: List<String>? = null,
     @Json(name = "url")
-    val url: String?
+    val url: String? = null
 ): DataMapper<CharacterResponse, CharacterData, CharacterUi> {
     override fun toData(): CharacterData {
         return CharacterData(

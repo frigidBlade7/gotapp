@@ -18,6 +18,7 @@ dependencies {
     api "$timber_logging"
     api "$lifecycle"
     api "$fragment_ktx"
+    testApi "$mockk"
 
     kapt "$room_runtime"
     kapt "$room_compiler"
@@ -33,6 +34,7 @@ dependencies {
 
     api "$moshi_converter"
 
+    debugImplementation 'androidx.fragment:fragment-testing:1.5.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'

@@ -25,27 +25,27 @@ import com.zatec.gotapp.core.data.DataMapper
 @JsonClass(generateAdapter = true)
 data class BookResponse(
     @Json(name = "authors")
-    val authors: List<String>?,
+    val authors: List<String>? = null,
     @Json(name = "characters")
-    val characters: List<String>?,
+    val characters: List<String>? = null,
     @Json(name = "country")
-    val country: String?,
+    val country: String? = null,
     @Json(name = "isbn")
-    val isbn: String?,
+    val isbn: String? = null,
     @Json(name = "mediaType")
-    val mediaType: String?,
+    val mediaType: String? = null,
     @Json(name = "name")
-    val name: String?,
+    val name: String? = null,
     @Json(name = "numberOfPages")
-    val numberOfPages: Int?,
+    val numberOfPages: Int? = null,
     @Json(name = "povCharacters")
-    val povCharacters: List<String>?,
+    val povCharacters: List<String>? = null,
     @Json(name = "publisher")
-    val publisher: String?,
+    val publisher: String? = null,
     @Json(name = "released")
-    val released: String?,
+    val released: String? = null,
     @Json(name = "url")
-    val url: String?
+    val url: String? = null
 ): DataMapper<BookResponse, BookData, BookUi> {
     override fun toData(): BookData {
         return BookData()
