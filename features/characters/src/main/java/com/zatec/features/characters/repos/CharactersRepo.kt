@@ -34,7 +34,9 @@ interface CharactersRepo {
      * @param characterId
      * @return specific character with id [characterId] from database
      * */
-    fun getCharacterFromCache(characterId: String): Flow<CharacterData>
+    fun getCharacterFromCache(characterId: String): Flow<CharacterData?>
 
-    fun clearCharacterCache()
+    suspend fun clearCharacterCache()
+
+    suspend fun insertCharacters(vararg characters: CharacterData )
 }

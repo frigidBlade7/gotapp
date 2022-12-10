@@ -1,11 +1,15 @@
-package com.zatec.features.houses.api
+package com.zatec.features.houses
 
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.zatec.features.houses.api.HouseResponse
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
 
 import org.junit.Test
+import org.junit.runner.RunWith
 
+@RunWith(AndroidJUnit4::class)
 class HouseResponseTest {
 
     lateinit var houseResponse: HouseResponse
@@ -17,7 +21,6 @@ class HouseResponseTest {
 
     @After
     fun tearDown() {
-        TODO("Not yet implemented")
     }
 
     @Test

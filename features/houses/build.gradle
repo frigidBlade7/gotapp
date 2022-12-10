@@ -12,6 +12,8 @@ android {
 dependencies {
     implementation project(path: ':features:core')
 
+    api 'androidx.test.ext:junit-ktx:1.1.4'
+    testApi 'org.robolectric:robolectric:4.8'
 
     implementation "$navigationFragment"
     implementation "$navigationUi"

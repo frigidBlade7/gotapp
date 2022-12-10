@@ -1,12 +1,16 @@
-package com.zatec.features.houses.ui
+package com.zatec.features.houses
 
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.zatec.features.houses.api.HouseResponse
+import com.zatec.features.houses.ui.*
 import org.junit.Assert.*
 
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
 
+@RunWith(AndroidJUnit4::class)
 class HouseUiTest {
     lateinit var houseResponse: HouseResponse
     lateinit var partialHouseResponse: HouseResponse
@@ -70,12 +74,12 @@ class HouseUiTest {
         assertEquals(listOf<String>("alpha"), houseData.cadetBranches)
         assertEquals("House Attipoe", houseData.name)
         assertEquals("A developer behind his macbook, writing tests", houseData.coatOfArms)
-        assertEquals("", houseData.currentLord)
+        assertEquals("Nathany Attipoe", houseData.currentLord)
         assertEquals("", houseData.diedOut)
         assertEquals("", houseData.founded)
         assertEquals("", houseData.founder)
         assertEquals("", houseData.heir)
-        assertEquals("Nathany Attipoe", houseData.overlord)
+        assertEquals("", houseData.overlord)
         assertEquals("Accra, Ghana", houseData.region)
         assertEquals("https://anapioficeandfire.com/api/houses/1", houseData.url)
         assertEquals("Tabs over spaces!", houseData.words)

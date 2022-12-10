@@ -1,15 +1,18 @@
 package com.zatec.features.houses.di
 
 import com.zatec.features.houses.api.HousesApi
+import com.zatec.features.houses.data.HouseDao
 import com.zatec.features.houses.data.HouseDatabase
 import com.zatec.features.houses.repos.HousesRepo
 import com.zatec.features.houses.repos.HousesRepository
+import com.zatec.gotapp.core.utils.IOContext
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import javax.inject.Singleton
+import kotlin.coroutines.CoroutineContext
 
 /**
  * Houses network module
@@ -40,7 +43,7 @@ class HousesNetworkModule {
      */
     @Singleton
     @Provides
-    fun providesHousesRepo(booksApi: HousesApi, database: HouseDatabase): HousesRepo {
-        return HousesRepository(booksApi, database)
+    fun providesHousesRepo(booksApi: HousesApi, houseDao: HouseDao, @IOContext coroutineContext: CoroutineContext): HousesRepo {
+        return HousesRepository(booksApi, houseDao, coroutineContext)
     }
 }
