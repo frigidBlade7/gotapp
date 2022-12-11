@@ -71,7 +71,6 @@ class DisplayHouseFragment : Fragment() {
                             contains("bolton", true)-> binding.icon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.drawable.bolton, null))
                             contains("frey", true)-> binding.icon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.drawable.frey, null))
                             contains("greyjoy", true)-> binding.icon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.drawable.greyjoy, null))
-                            contains("lannister", true)-> binding.icon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.drawable.lannister, null))
                             contains("martell", true)-> binding.icon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.drawable.martell, null))
                             contains("mormont", true)-> binding.icon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.drawable.mormont, null))
                             contains("stark", true)-> binding.icon.setImageDrawable(ResourcesCompat.getDrawable(resources,R.drawable.stark, null))
