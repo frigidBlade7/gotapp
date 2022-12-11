@@ -13,6 +13,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4ClassRunner::class)
 class BooksListFragmentTest {
 
+    //todo hilt x robolectric wont let us be great ( missing @AndroidEntryPoint), see here for an implementation idea
+    //https://mohammad-kalaleeb.medium.com/unit-testing-android-fragments-and-activity-with-hilt-and-robolectric-3589b96bd026
     @Test
     fun givenAppWhenLaunchedThenBookFragmentIsVisibleWithCorrectTitle(){
         val scenario = launchFragmentInContainer<BooksListFragment>()

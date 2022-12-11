@@ -15,15 +15,16 @@ import org.junit.Before
 class CharactersViewModelTest {
 
     private lateinit var charactersViewModel: CharactersViewModel
-    private val charactersRepo = CharacterRepository(
-        FakeCharactersApi(),
-        FakeCharactersDao(),
-        Dispatchers.IO
-    )
-    private val characterremotepagingmediatorFactory = FakeCharacterRemotePagingMediatorFactory(charactersRepo)
 
     @Before
     fun setUp() {
+        val charactersRepo = CharacterRepository(
+            FakeCharactersApi(),
+            FakeCharactersDao(),
+            Dispatchers.IO
+        )
+        val characterremotepagingmediatorFactory = FakeCharacterRemotePagingMediatorFactory(charactersRepo)
+
         charactersViewModel = CharactersViewModel(
             pagedCharactersUseCase= PagedCharactersUseCase(
                 FakeCharactersDao(),

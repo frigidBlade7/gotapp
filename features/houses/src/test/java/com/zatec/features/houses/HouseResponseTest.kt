@@ -1,15 +1,11 @@
 package com.zatec.features.houses
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.zatec.features.houses.api.HouseResponse
 import org.junit.After
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
-
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
 class HouseResponseTest {
 
     lateinit var houseResponse: HouseResponse
@@ -62,27 +58,5 @@ class HouseResponseTest {
         assertEquals(listOf<String>(), houseUi.seats)
         assertEquals(listOf<String>(), houseUi.swornMembers)
         assertEquals(listOf<String>(), houseUi.titles)
-    }
-
-
-    @Test
-    fun givenHouseResponseAsDataWhenParamsAreNullThenDefaultValuesAreUsed() {
-        val houseData = houseResponse.toData()
-        assertEquals(listOf<String>(), houseData.ancestralWeapons)
-        assertEquals(listOf<String>(), houseData.cadetBranches)
-        assertEquals("", houseData.name)
-        assertEquals("", houseData.coatOfArms)
-        assertEquals("", houseData.currentLord)
-        assertEquals("", houseData.diedOut)
-        assertEquals("", houseData.founded)
-        assertEquals("", houseData.founder)
-        assertEquals("", houseData.heir)
-        assertEquals("", houseData.overlord)
-        assertEquals("", houseData.region)
-        assertEquals("", houseData.url)
-        assertEquals("", houseData.words)
-        assertEquals(listOf<String>(), houseData.seats)
-        assertEquals(listOf<String>(), houseData.swornMembers)
-        assertEquals(listOf<String>(), houseData.titles)
     }
 }

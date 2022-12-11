@@ -17,6 +17,9 @@ import org.junit.runner.RunWith
 class HousesListFragmentTest {
 
 
+    //todo hilt x robolectric wont let us be great ( missing @AndroidEntryPoint), see here for an implementation idea
+    //https://mohammad-kalaleeb.medium.com/unit-testing-android-fragments-and-activity-with-hilt-and-robolectric-3589b96bd026
+
     @Test
     fun givenAppWhenHousesTabClickedThenHousesFragmentIsVisibleWithCorrectTitle(){
         val scenario = launchFragmentInContainer<LandingFragment>()
