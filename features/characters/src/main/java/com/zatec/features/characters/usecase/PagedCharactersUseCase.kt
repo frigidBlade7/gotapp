@@ -1,9 +1,11 @@
 package com.zatec.features.characters.usecase
 
 import androidx.paging.*
+import com.zatec.features.characters.data.CharacterDao
 import com.zatec.features.characters.data.CharacterDatabase
 import com.zatec.features.characters.data.CharacterRemotePagingMediatorFactory
 import com.zatec.features.characters.persistence.toUi
+import com.zatec.features.characters.repos.CharactersRepo
 import com.zatec.features.characters.ui.CharacterUi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -18,7 +20,7 @@ import javax.inject.Inject
  * @constructor Create empty Paged characters use case
  */
 class PagedCharactersUseCase @Inject constructor(
-    private val database: CharacterDatabase,
+    private val characterDao: CharacterDao,
     private val remoteMediatorFactory: CharacterRemotePagingMediatorFactory
 ) {
     /**
@@ -37,7 +39,7 @@ class PagedCharactersUseCase @Inject constructor(
         )
         return Pager(
             config = config,
-            pagingSourceFactory = { database.characterDao().getPagedCharacters() },
+            pagingSourceFactory = { characterDao.getPagedCharacters() },
             remoteMediator = remoteMediatorFactory.create(page, size)
         ).flow.map {it.map { data -> data.toUi() }}
     }

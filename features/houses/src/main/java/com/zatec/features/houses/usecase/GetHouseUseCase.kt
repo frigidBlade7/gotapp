@@ -12,8 +12,7 @@ import javax.inject.Inject
  * @constructor Create empty query single house use case
  */
 class GetHouseUseCase @Inject constructor(
-    private val housesRepo: HousesRepo,
-    private val houseDatabase: HouseDatabase
+    private val housesRepo: HousesRepo
 ) {
     /**
      * Invoke

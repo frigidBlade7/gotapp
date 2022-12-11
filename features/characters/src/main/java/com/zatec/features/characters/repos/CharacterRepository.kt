@@ -1,12 +1,15 @@
 package com.zatec.features.characters.repos
 
 import com.zatec.features.characters.api.CharactersApi
-import com.zatec.features.characters.data.CharacterDatabase
+import com.zatec.features.characters.data.CharacterDao
 import com.zatec.features.characters.data.CharacterResponse
 import com.zatec.features.characters.persistence.CharacterData
 import com.zatec.gotapp.core.api.ApiResponse
+import com.zatec.gotapp.core.utils.IOContext
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 
 /**
@@ -18,7 +21,8 @@ import javax.inject.Inject
  */
 class CharacterRepository @Inject constructor(
     private val charactersApi: CharactersApi,
-    private val database: CharacterDatabase
+    private val characterDao: CharacterDao,
+    @IOContext val coroutineContext: CoroutineContext
 ): CharactersRepo {
     override suspend fun queryCharacters(page: Int?, size: Int): ApiResponse<List<CharacterResponse>> =
         charactersApi.queryCharacters(page = page, pageSize = size)
@@ -28,12 +32,20 @@ class CharacterRepository @Inject constructor(
         charactersApi.getCharacterById(characterId)
 
 
-    override fun getCharacterFromCache(characterId: String): Flow<CharacterData> {
-        return database.characterDao().getCharacterById(characterId)
+    override fun getCharacterFromCache(characterId: String): Flow<CharacterData?> {
+        return characterDao.getCharacterById(characterId)
     }
 
-    override fun clearCharacterCache() {
-        database.characterDao().clear()
+    override suspend fun clearCharacterCache() {
+        withContext(coroutineContext){
+            characterDao.clear()
+        }
+    }
+
+    override suspend fun insertCharacters(vararg characters: CharacterData) {
+        withContext(coroutineContext){
+            characterDao.insert(*characters)
+        }
     }
 
 }

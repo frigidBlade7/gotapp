@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.zatec.gotapp.books.test", appContext.packageName)
+        assertEquals("com.zatec.features.books.test", appContext.packageName)
     }
 }

@@ -3,12 +3,17 @@ package com.zatec.features.characters.data
 import androidx.paging.*
 import androidx.room.withTransaction
 import com.zatec.features.characters.persistence.CharacterData
+import com.zatec.features.characters.repos.CharactersRepo
 import com.zatec.features.characters.usecase.QueryCharactersUseCase
+import com.zatec.gotapp.core.utils.IOContext
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.withContext
 import timber.log.Timber
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.coroutineContext
 
 
 /**
@@ -25,7 +30,7 @@ class CharacterRemotePagingMediator @AssistedInject constructor(
     private val queryCharactersUseCase: QueryCharactersUseCase,
     @Assisted private var page: Int?,
     @Assisted private val size: Int,
-    private val database: CharacterDatabase
+    private val charactersRepo: CharactersRepo
     //todo can inject CharacterRepo here to interface with both usecase and data
 ): RemoteMediator<Int, CharacterData>() {
     override suspend fun load(
@@ -63,11 +68,11 @@ class CharacterRemotePagingMediator @AssistedInject constructor(
 //                }
 
                 it.data?.let { data ->
-                    database.withTransaction {
+                    withContext(coroutineContext) {
                         if(loadType == LoadType.REFRESH)
-                            database.characterDao().clear()
+                            charactersRepo.clearCharacterCache()
 
-                        database.characterDao().insert(*data.map { character-> character.toData() }.toTypedArray())
+                        charactersRepo.insertCharacters(*data.map { character-> character.toData() }.toTypedArray())
                     }
 
                     val endReached = it.lastPage == null || page!! >= it.lastPage!!

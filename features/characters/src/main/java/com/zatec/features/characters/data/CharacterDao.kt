@@ -50,7 +50,7 @@ interface CharacterDao {
      */
     @Transaction
     @Query("SELECT * FROM CharacterData WHERE id IS :characterId LIMIT 1")
-    fun getCharacterById(characterId: String): Flow<CharacterData>
+    fun getCharacterById(characterId: String): Flow<CharacterData?>
 
     /**
      * Clear

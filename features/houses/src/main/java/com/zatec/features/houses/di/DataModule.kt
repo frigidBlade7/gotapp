@@ -38,7 +38,8 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun providesBookDao(database: HouseDatabase): HouseDao {
-        return database.houseDao()
+    fun providesHouseDao(houseDatabase: HouseDatabase): HouseDao{
+        return houseDatabase.houseDao()
     }
+
 }

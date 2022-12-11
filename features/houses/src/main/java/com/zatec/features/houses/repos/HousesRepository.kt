@@ -3,11 +3,15 @@ package com.zatec.features.houses.repos
 import androidx.room.withTransaction
 import com.zatec.features.houses.api.HousesApi
 import com.zatec.features.houses.api.HouseResponse
+import com.zatec.features.houses.data.HouseDao
 import com.zatec.features.houses.data.HouseDatabase
 import com.zatec.features.houses.persistence.HouseData
 import com.zatec.gotapp.core.api.ApiResponse
+import com.zatec.gotapp.core.utils.IOContext
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 /**
  * Houses repository
@@ -17,7 +21,8 @@ import javax.inject.Inject
  */
 class HousesRepository @Inject constructor(
     private val housesApi: HousesApi,
-    private val houseDatabase: HouseDatabase
+    private val houseDao: HouseDao,
+    @IOContext val coroutineContext: CoroutineContext
 ): HousesRepo{
 
     //api call to return houses in a page as a list
@@ -30,13 +35,12 @@ class HousesRepository @Inject constructor(
 
 
     override fun getHouseFromCache(houseId: String): Flow<HouseData?> =
-        houseDatabase.houseDao().getHouseById(houseId)
+        houseDao.getHouseById(houseId)
 
     override suspend fun storeHouseInDb(houseData: HouseData) {
-        houseDatabase.withTransaction {
-            houseDatabase.houseDao().insert(houseData)
+        withContext(coroutineContext){
+            houseDao.insert(houseData)
         }
     }
-
 
 }
